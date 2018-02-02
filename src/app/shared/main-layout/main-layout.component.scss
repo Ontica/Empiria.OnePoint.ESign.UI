@@ -1,0 +1,67 @@
+@import "../../../styles/variables";
+//
+// Main layout scss
+//
+.body {
+  display: flex;
+  flex-direction: inline-flex; //column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-layout-left-panel {
+  background-color: $red;
+  text-align: center;
+  height: 100vh;
+  width: 5vw;
+}
+
+.main-layout-right-panel {
+  background-color: $white;
+  width: 95vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header-container {
+  height: 10%;
+  top: 0;
+  border-bottom: 1px solid $red;
+  display: flex;
+}
+
+.main-layout-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  height: 90%;
+  overflow: hidden;
+}
+
+
+/*  
+//
+// Header-container inner items
+//
+*/
+
+.title {
+  color: $text-title;
+  font-size: $font-size-title;
+  font-weight: $font-weight-title;
+  min-width: 360px;
+  padding-top: 7px;
+  width: 50%;
+  small {
+    color: $text-hint;
+    display: block;
+    font-size: $font-size-hint;
+    font-weight: $font-weight-hint;
+  }
+}
+
+.configuration-bar {
+  font-size: $font-size-command;
+  font-weight: $font-weight-command;
+  width: 180px;
+}

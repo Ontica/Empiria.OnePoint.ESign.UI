@@ -1,0 +1,71 @@
+@import "../../../styles/variables";
+
+div {
+  float: left;
+  margin: 0px;
+  outline: none;
+  padding: 0;
+  vertical-align: top;
+}
+
+.home-main-container {
+  height: 85vh;
+  min-height: 30%;
+  width: 100%;
+}
+
+.home-left-container {
+  display: inline-block;
+  height: 100%;
+  width: 80%;
+  margin-right: 10px;
+}
+
+.home-right-container {
+  display: inline-block;
+  height: 100%;
+  width: 19%;
+}
+
+.search-container {
+  display: inline-block;
+  height: 70%;
+  width: 100%;
+}
+
+.footer-contaner {
+  height: 30%;
+  width: 100%;
+}
+
+.binnacle-container {
+  height: 100%;
+  width: 49%;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.chat-container {
+  height: 100%;
+  width: 49%;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: right;
+}
+
+.project-status-container {
+  height: 30%;
+  width: 100%;
+}
+
+.todo-list-container {
+  height: 39%;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.news-tips-container {
+  height: 30%;
+  width: 100%;
+  margin-top: 8px;
+}

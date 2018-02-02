@@ -1,0 +1,78 @@
+@import "general-styles";
+.grid {
+  border: $grid-border;
+  border-collapse: collapse;
+  margin: 3px 10px 3px 3px;
+  width: 100%;
+  text-align: left;
+  min-width: 510px;
+}
+
+table.grid thead {
+  background-color: $text-title;
+  color: white;
+}
+
+table.grid thead tr {
+  height: 30px;
+}
+
+table.grid thead th {
+  font-weight: normal;
+  font-size: 9pt;
+  color: white;
+  padding: 4pt;
+}
+
+table.grid tbody {
+  display: block;
+}
+
+table.grid tbody tr {
+  height: auto;
+  display: block;
+  overflow: hidden;
+}
+
+table.grid tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+table.grid td, table.grid th {
+  float: left;
+}
+
+table.grid tbody tr:nth-child(odd) {
+  background-color: $grid-odd-background-color;
+}
+
+table.grid tbody tr:nth-child(even) {
+  background-color: $grid-even-background-color;
+}
+
+.grid-footer {
+  align-items: center;
+  bottom: 0px;
+  padding-right: 100px;
+  height: 35px;   
+  margin: 3px 10px 3px 3px;
+  position: fixed;
+  width: 99%;
+}
+
+.grid-search-table {
+  border-bottom: 1px solid $text-title;
+  margin: 3px 10px 3px 3px;
+  width: 100%;
+  font-size: 9pt;
+  color: $text-title;
+}
+
+.grid-search-table td {
+  white-space: nowrap;
+}
+
+.main-icon td {
+  width: 24pt;
+}

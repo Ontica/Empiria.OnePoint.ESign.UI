@@ -1,0 +1,14 @@
+{
+  "appName": "Empiria OnePoint ESign Application",
+  "version": "0.1",
+  "date": "2018-02-02",
+  "settings": [{
+      "key": "APPLICATION_KEY",
+      "value": "Steps67mj5sWW8E4opm8DSEI6CFRqDrGvvqK7qos2wQcJPNrEUc9a9rYUUZ1G90C"
+    },
+    {
+      "key": "HTTP_API_BASE_ADDRESS",
+      "value": "http://empiria.steps/api/"
+    }
+  ]
+}

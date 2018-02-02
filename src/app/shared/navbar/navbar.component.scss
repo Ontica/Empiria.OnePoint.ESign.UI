@@ -1,0 +1,54 @@
+@import "../../../styles/variables";
+//
+// Navigation bar
+//
+.nav-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 10pt;
+  height: 100vh;
+}
+
+.nav-bar li {
+  display: block;
+  padding-bottom: 40pt;
+}
+
+.nav-bar i {
+  color: $white;
+}
+
+.nav-bar a {
+  text-decoration: none;
+}
+
+.nav-bar a:hover label {
+  color: $orange;
+  border-bottom: 1px solid $orange;
+  cursor: pointer;
+}
+
+.nav-bar a:hover i {
+  color: $orange;
+}
+
+.nav-bar label {
+  color: $white;
+  font-size: 12px;
+  font-family: $font-family;
+  height: $font-weight-base;
+}
+
+.selected label {
+  color: $orange;
+  z-index: 200;
+}
+
+.selected i {
+  color: $orange;
+}
+
+.logo {
+  padding-top: 10pt;
+}
