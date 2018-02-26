@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 
 const DEFAULT_METADATA = {
   title: 'Firma electrónica - Gobierno del Estado de Tlaxcala',
-  baseUrl: '/',
+  baseUrl: "/", //  /firma/
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
   AOT: process.env.BUILD_AOT || helpers.hasNpmFlag('aot'),
@@ -75,7 +75,7 @@ function ngcWebpackSetup(prod, metadata) {
     metadata = DEFAULT_METADATA;
   }
 
-  const buildOptimizer = prod;
+  const buildOptimizer = prod && metadata.AOT;
   const sourceMap = true; // TODO: apply based on tsconfig value?
   const ngcWebpackPluginOptions = {
     skipCodeGeneration: !metadata.AOT,
@@ -105,11 +105,9 @@ function ngcWebpackSetup(prod, metadata) {
 
   const loaders = [{
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: metadata.AOT && buildOptimizer ? [buildOptimizerLoader, '@ngtools/webpack'] : ['@ngtools/webpack']
+      use: buildOptimizer ? [buildOptimizerLoader, '@ngtools/webpack'] : ['@ngtools/webpack']
     },
-    ...buildOptimizer ?
-    [{ test: /\.js$/, use: [buildOptimizerLoader] }] :
-    []
+    ...buildOptimizer ? [{ test: /\.js$/, use: [buildOptimizerLoader] }] : []
   ];
 
   return {
