@@ -24,7 +24,7 @@ export class MainLayoutComponent {
   public constructor(private session: SessionService) {
     const principal = session.getPrincipal();
 
-    this.userName = principal.identity.fullname;
+//    this.userName = principal.identity.fullname;
   }
    
 }

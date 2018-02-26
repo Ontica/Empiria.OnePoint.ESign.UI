@@ -12,7 +12,7 @@ export class SafeHtmlPipe implements PipeTransform  {
 
   transform(value) {
     if (value) {
-      return this.sanitized.bypassSecurityTrustHtml(value);
+      return this.sanitized.bypassSecurityTrustResourceUrl(value);
     } else {
       return "";
     }

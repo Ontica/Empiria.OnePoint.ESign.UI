@@ -1,7 +1,7 @@
 <div class="nav-bar">
   <ul>
     <li>
-      <a href="#" class="logo"><img class="logo" src="./assets/img/customer-logo-white-vertical.png" alt="Gobierno del Estado de Tlaxcala" /></a>
+      <a href="#" class="logo"><img class="logo" src="assets/img/customer-logo-white-vertical.png" alt="Gobierno del Estado de Tlaxcala" /></a>
     </li>
     <li [class.selected]="selectedOption === 'home'">
       <a [routerLink]="['/home/search']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}" (click)="setSelectedStyle('home')"><i class="fa fa-home fa-2x" aria-hidden="true"></i><br><label>Home</label></a>

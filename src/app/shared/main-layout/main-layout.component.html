@@ -1,19 +1,21 @@
-<div class="body">
-  <div class="main-layout-left-panel">
-    <navbar></navbar>
+<div class="row" style="border-bottom: 1px solid darkred;">
+  <div class="small-5 columns">
+    <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
   </div>
-  <div class="main-layout-right-panel">
-    <div class="header-container">
-      <div class="title">       
-        <project-selector></project-selector>
+  <div class="small-7 columns">
+    <div class="row">
+      <div class="column column align-self-bottom">
+        <span class="titulo_principal ">Firma electrónica</span>
       </div>
-      <div class="configuration-bar pull-right">
-        {{userName}}
-        <i class="fa fa-cog" aria-hidden="true"></i>
+      <div class="column column align-self-bottom">
+        <span class="titulo_principal show-for-medium">Registro Público de la Propiedad</span>
       </div>
     </div>
-    <div class="main-layout-content">
-      <router-outlet></router-outlet>
-    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <angular-loader></angular-loader>
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -28,6 +28,10 @@ import { ProjectSelectorControl } from './controls/project-selector-control';
 import { NavBarService } from './navbar/navbar.service';
 import { ProjectSelectorService } from './controls/project-selector.service';
 
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService } from './spinner/spinner.service';
+import { ModalWindowComponent } from './modal-window/modal-window';
+
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -36,9 +40,9 @@ import { ProjectSelectorService } from './controls/project-selector.service';
   imports: [RouterModule, CommonModule, FormsModule],
   declarations: [MainLayoutComponent, NavbarComponent, NoContentComponent, SafeHtmlPipe,
                  AutocompleteControl, Chips, RAGControl, CalendarControl, SelectControl,
-                ProjectSelectorControl],
+                ProjectSelectorControl,SpinnerComponent, ModalWindowComponent],
   exports: [MainLayoutComponent, NoContentComponent, SafeHtmlPipe, AutocompleteControl, Chips,
-            RAGControl, CalendarControl, SelectControl],
-  providers:[NavBarService, ProjectSelectorService]
+            RAGControl, CalendarControl, SelectControl,  ModalWindowComponent],
+  providers:[NavBarService, ProjectSelectorService, SpinnerService]
 })
 export class SharedModule { }

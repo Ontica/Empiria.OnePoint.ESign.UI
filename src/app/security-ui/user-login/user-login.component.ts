@@ -25,6 +25,7 @@ export class UserLoginComponent implements OnInit {
               private authenticationService: AuthenticationService) { }
 
   public async authenticate() {
+   
     if (!this.validateForm()) {
       return;
     }
@@ -32,12 +33,12 @@ export class UserLoginComponent implements OnInit {
     try {
       await this.authenticationService.login(this.userID, this.password);
 
-
-      this.router.navigate(['/home/search']); // /projects/search
+      this.router.navigate(['/esign/search']);
 
     } catch (exception) {
       alert(exception);
     }
+       
   }
 
   public async ngOnInit() {
