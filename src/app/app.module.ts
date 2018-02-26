@@ -24,8 +24,8 @@ import { CoreModule } from './core/core.module';
 import { SecurityUIModule } from './security-ui/security-ui.module';
 import { SharedModule } from './shared/shared.module';
 
-import { HomeModule } from './home/home.module';
-
+import { EsignModule } from './esign/esign.module';
+ 
 
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -72,8 +72,8 @@ type StoreType = {
   imports: [
     CoreModule,
     SecurityUIModule,
-    SharedModule,
-    HomeModule,
+    SharedModule,   
+    EsignModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
