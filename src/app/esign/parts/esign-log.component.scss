@@ -1,0 +1,57 @@
+@import "../../../styles/variables";
+@import "../../../styles/esign-styles";
+
+ul {
+    list-style: none;
+    border-top: 1px solid $gray;    
+}
+
+li {
+    border-bottom: 1px solid $gray;
+}
+
+.grid {
+  height: 65vh;
+  background-color: $white; 
+  overflow-y:scroll; 
+}
+
+.document-type-label {     
+    color: $blue;   
+}
+
+.small-label {
+    color: $light-gray;
+    font-size: 0.85em;
+    padding-bottom: 0;
+    padding-top: 0em;
+    font-family: $font-family;
+ }
+
+ table {
+  margin-top: 20px;   
+}
+
+table .header {
+  font-weight: 600;
+}
+
+td {
+  color: $black;       
+  font-size: 0.85em;
+  padding-bottom: 0;
+  padding-top: 0em;
+  font-family: $font-family;
+}
+
+.singed-event-tag {
+  color: $dark-green;
+}
+
+.refused-event-tag, .unrefused-event-tag {
+  color: $light-gray;;
+}
+
+.revoked-event-tag { 
+  color: $orange;
+}

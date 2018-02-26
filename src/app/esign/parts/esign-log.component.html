@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="columns small-12 small-centered">           
+   <div class="row">
+      <div class="columns small-4">
+        <label  style="padding-top:5px; padding-left: 20px;"> {{signEvents.length}} Elementos</label> 
+      </div>
+      
+    </div>
+  </div>                 
+</div>
+
+<div class="row show-for-small-only">
+  <div class="columns small-12 small-centered">
+    <div class="grid">
+      <ul> 
+        <li *ngFor="let signEvent of signEvents"> 
+          <ng-container [ngSwitch]="signEvent.eventType">
+            <span *ngSwitchCase = "'Signed'">
+              <label class="singed-event-tag"><i class="fa fa-edit"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
+                {{signEvent.timeStamp |  date:'shortTime' }} </label>
+                <label class="singed-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
+                <label>Firmado</label>
+            </span>          
+            <span  *ngSwitchCase =  "'Revoked'">
+              <label class="revoked-event-tag"> <i class="fa fa-exclamation-triangle"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
+              {{signEvent.timeStamp |  date:'shortTime' }}</label>
+              <label class="revoked-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
+              <label>Rechazado</label>
+            </span>
+            <span *ngSwitchDefault>
+                <label class="refused-event-tag"><i class="fa fa-file"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }} 
+                  {{signEvent.timeStamp |  date:'shortTime' }}</label>
+                  <label class="refused-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
+                <label>Enviado a pendientes</label>
+            </span>       
+          </ng-container>
+          <div>           
+            <label class="document-type-label">{{signEvent.signRequest.document.type}}</label>
+            <div class='small-label' [innerHtml]='signEvent.signRequest.document.description'></div>
+            <label class='small-label'>
+              {{signEvent.signRequest.requestedTime | date: 'dd-MMM-yyyy' }} | {{signEvent.signRequest.requestedBy}} |</label><br>
+          </div> 
+        
+        </li>
+      </ul>    
+    </div>
+  </div>
+</div>
+
+<div class="row small-centered show-for-medium">
+  <div class="columns small-12 small-centered">
+    <table>
+      <tr class="header"> 
+        <td> </td>
+        <td>Fecha</td>
+        <td>Hora</td>
+        <td>Evento</td>
+        <td>Número de documento</td>
+        <td>Tipo de documento</td>
+        <td>Solicitado por</td>      
+      </tr>               
+      <tr   *ngFor="let signEvent of signEvents">
+        <td>
+            <ng-container [ngSwitch]="signEvent.eventType">
+                <span *ngSwitchCase = "'Signed'">
+                  <i class="fa fa-edit singed-event-tag"></i>
+                </span>          
+                <span  *ngSwitchCase =  "'Revoked'">
+                  <i class="fa fa-times revoked-event-tag"></i>                     
+                </span>
+                <span *ngSwitchDefault>
+                  <i class="fa fa-file refused-event-tag"></i>                   
+                </span>  
+            </ng-container>
+        </td>
+        <td>{{signEvent.timeStamp | date: 'dd-MM-yyyy' }} </td>
+        <td>{{signEvent.timeStamp |  date:'shortTime' }}</td>
+        <td>{{getEventTag(signEvent.eventType)}}</td>
+        <td>{{signEvent.signRequest.document.documentNo}}</td>
+        <td>{{signEvent.signRequest.document.type}}</td>
+        <td>{{signEvent.signRequest.filing.filedBy}}</td>
+      </tr>    
+    </table> 
+  </div>
+</div>    

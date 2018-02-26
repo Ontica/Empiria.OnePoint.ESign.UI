@@ -1,0 +1,28 @@
+
+<div class="nav-bar show-for-medium">
+    <ul>
+      <li [class.selected]="selectedOption === 'pendingDocuments'"><a><i class="fa fa-home fa-2x"></i></a></li>
+      <li [class.selected]="selectedOption === 'pendingDocuments'"><a (click)="setSelectedStyle('pendingDocuments')">Pendientes</a></li>
+      <li [class.selected]="selectedOption === 'signedDocuments'"><a (click)="setSelectedStyle('signedDocuments')">Firmados</a></li>
+      <li [class.selected]="selectedOption === 'refusedDocuments'"><a (click)="setSelectedStyle('refusedDocuments')">Rechazados</a></li>
+      <li [class.selected]="selectedOption === 'search'"><a (click)="setSelectedStyle('search')"> <i class="fa fa-search" ></i></a></li>
+      
+    </ul>        
+    
+</div>
+
+<div class="columns small-12 small-centered show-for-small-only">
+    <div class="nav-bar">
+   <ul>
+               <li [class.selected]="selectedOption === 'pendingDocuments'"><a><i class="fa fa-home fa-2x"></i></a></li>
+            <li>
+                <select class="select-box" [(ngModel)]="selectedOption"  #comboSelectedOption (change)="setSelectedStyle(comboSelectedOption.value)" >            
+                    <option value="pendingDocuments">Pendientes</option>
+                    <option value="signedDocuments">Firmados</option>
+                    <option value="refusedDocuments">Rechazados</option>
+                    <option value="search">Buscar</option>
+                </select>
+            </li> 
+        </ul>
+    </div>  
+</div>

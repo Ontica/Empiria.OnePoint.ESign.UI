@@ -1,0 +1,18 @@
+<modal-window [title]="commandDescriptionLabel " (onClose)="onClose()">
+  <div class="form-container">
+    <div><label class="document-type-label"><span class="command-description-label">{{commandDescriptionLabel}}</span> {{signRequests.length}} documentos seleccionados</label></div>        
+    <br>
+    <div><label>Usuario:</label></div>
+    <div><label class="document-type-label"> Sergio Cuahutémoc Lira</label></div>
+    <br>
+    <div><label>Firma electrónica:</label></div>
+    <div><input type="password" style="width:90%" placeholder="Firma electrónica" (input)="password=$event.target.value"></div>
+  </div>
+  <div class="buttons-container">
+    <div class="buttons-bar">
+        <button class="button tiny cancel-button"  (click)="cancel() ">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button tiny" (click)="doCommand()">Firmar</button>
+    </div>
+    
+  </div> 
+</modal-window>

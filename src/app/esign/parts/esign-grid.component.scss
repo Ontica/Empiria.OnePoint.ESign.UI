@@ -1,0 +1,80 @@
+@import "../../../styles/esign-styles";
+
+ul {
+    list-style: none;    
+    //border-top: 1px solid $gray;
+}
+
+li {
+    border-bottom: 1px solid $gray;
+}
+
+li:first-child {
+  border-top: 1px solid $gray;
+}
+
+.selected-item {
+  background-color: yellow;
+}
+
+.header {
+  padding-left: 20px;  
+  padding-top: 5px;
+  background-color: $white;
+  float:left;
+}
+
+.grid {
+  height: 65vh;
+  background-color: $white;
+  font-family: $font-family; 
+  overflow-y:scroll; 
+}
+
+.document-type-label {     
+    color: $blue;   
+}
+
+.selected-name-label  {
+  color: $dark-green;
+ }
+  
+.selected-document-type-label {
+  color: $black;  
+}
+  
+.selected-small-label {
+  color: $dark-red;
+}
+
+.title-tag {
+  font-size: 1.2em;
+  cursor: pointer; 
+}
+
+.pending-documents-tag {  
+  color: $light-gray;  
+}
+
+.signed-documents-tag {
+  color: $dark-green;
+}
+
+.revoked-documents-tag {
+  color: $orange;
+}
+
+.subtitle-tag {
+  font-size: 0.9em;  
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.document-description-tag {
+  color: $black;
+  font-size: 0.85em;  
+}
+
+.requested-tag {
+  color: $black;
+}

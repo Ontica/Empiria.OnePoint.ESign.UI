@@ -1,0 +1,59 @@
+<div class ="row red-border-bottom" >        
+    <div class="columns small-11" >         
+      <esign-nav-bar (onSelectOption)="onChangeOption($event)"> </esign-nav-bar>        
+    </div>
+    <div class="columns small-1">
+        <div class="small-label " style="float:right; padding-top:5px;">            
+            <span><a (click)="onChangeOption('mylog')">Bitácora</a></span>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="option === 'mylog'">
+    <esign-log></esign-log>        
+</ng-container>
+
+<ng-container *ngIf="option !== 'mylog'"> 
+    <div class="row">               
+        <div class="{{leftContainerClass}}" style="padding-top:20px;">                   
+            <div [ngSwitch]="option">
+                <ng-container *ngSwitchCase="'search'">
+                    <documents-search (onDisplayDocument)="onDisplayDocument($event)"></documents-search>
+                </ng-container>
+                <ng-container  *ngSwitchDefault>
+                    <esign-grid [documentType]="option" (onDisplayDocument)="onDisplayDocument($event)"></esign-grid>       
+                </ng-container>                                
+            </div>                                 
+        </div>
+        <div *ngIf="isDocumentDisplayed"  style="padding-top:20px;">
+            <div class="columns small-12 show-for-small-only">
+                <div class="row">
+                    <div class="columns">
+                        <span style="float:right;"><i class="fa fa-times" (click)="onHideDocument()"></i></span>                              
+                    </div>
+                 </div>
+                <div class="row"> 
+                    <div class="columns">                             
+                        <div style="width:100%; height:65vh;" > 
+                            <document-viewer [documentURI]="documentURI" (onHideDocument)="onHideDocument()"></document-viewer>         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns small-6 show-for-medium">
+                <div class="row">
+                    <div class="columns">
+                        <span style="float:right;"><i class="fa fa-times" (click)="onHideDocument()"></i></span>                              
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="columns small-12">                             
+                        <div style="width:100%; height:65vh;"> 
+                            <document-viewer [documentURI]="documentURI" (onHideDocument)="onHideDocument()"></document-viewer>         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

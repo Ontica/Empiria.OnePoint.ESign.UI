@@ -1,0 +1,26 @@
+@import "../../../styles/esign-styles";
+
+.form-container {
+ margin-top: 20px;
+ margin-left: 20px;
+ width: 240px;
+ height: 220px;
+}
+
+.document-type-label {   
+  color: $blue;   
+}
+
+.command-description-label {
+  color: $dark-red;  
+}
+
+.buttons-container {
+  border-top: 1px solid $dark-red;
+  width: 100%;
+}
+.buttons-bar {
+  float:right;
+  padding-top: 10px;
+  padding-right:20px;  
+}
