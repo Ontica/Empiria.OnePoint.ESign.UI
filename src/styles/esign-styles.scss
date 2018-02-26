@@ -1,0 +1,36 @@
+@import "variables";
+
+label {
+  font-family: $font-family;
+  font-weight: 800;
+  font-size: 0.85em;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+input[type=text] {
+  border: 1px solid $blue;
+  font-size: 14px;
+  height: 2em;
+  background-color: $light-white;
+  outline: none;
+  padding: 8px;
+}
+
+
+
+
+button {
+  border-radius: 6px;
+  background-color: $dark-green;  
+  height: 1.25rem;
+  padding-top: 0.20rem;
+  padding-bottom: 0.25rem;
+  text-align: center;  
+}
+  
+.cancel-button {
+  color:$white; 
+  background-color: $dark-red;
+}
+

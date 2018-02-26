@@ -1,35 +1,36 @@
 //
 // Colors
 //
-$ambar: #ebd1a5 !default;
-$black: #1a1a1a !default;
-$gray: #909090!default;
-$brown: #604020 !default;
-$blue: #204060 !default;
-$lime: #8CBF26 !default;
-$green: #17c457 !default;
+$blue:#106cc8 !default;
+$black:black !default;
+$gray:#35434c !default;
+$green:#306d4e !default;
+$red: red !default;
+$white: white !default;
+$transparent: #fafafa !default;
+$light-gray: #8a8a8a !default;
+$light-white: #fcfcfc !default; 
+$dark-gray:#2c3942 !default;
+$dark-green: darkgreen !default;
+$dark-red: darkred !default;
+
 $orange: #f0bf68 !default;
 $light-yellow: #fffffb !default;
-$pink: #E671B8 !default;
-$purple: #A700AE !default;
-$red:#9b1b1f !default;
-$red-dark: #d04f4f !default;
-$teal: #25a1c5 !default;
-$white: #f8f8f8 !default;
-$light-white: white;
-$silver: #909090;
+$ambar: #ebd1a5 !default;
+
 //
 // Typography
 //
-$font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family: Segoe UI Emoji, Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif !default;
 $font-size-root: 10px !default;
 $font-size-base: 1.0rem !default;
 $font-weight-base: 200 !default;
 $text-color: $black !default;
 //
-$font-size-title: $font-size-base * 1.25;
-$font-weight-title: 500;
-$text-title: $blue !default;
+$font-family-title: Open Sans, sans-serif;
+$font-size-title: 1.5em;
+$font-weight-title: 600;
+$text-title: $gray !default;
 //
 $font-size-command: $font-size-base * 0.85;
 $font-weight-command: 300;
