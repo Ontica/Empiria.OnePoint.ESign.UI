@@ -4,11 +4,11 @@
   "date": "2018-02-02",
   "settings": [{
       "key": "APPLICATION_KEY",
-      "value": "Steps67mj5sWW8E4opm8DSEI6CFRqDrGvvqK7qos2wQcJPNrEUc9a9rYUUZ1G90C"
+      "value": "esignAppCGi9xUsu9HiZRjuVHkvxoUW5zlx0RTZjp7gKQxN4cAMjVv3OchyWaV7x"
     },
     {
       "key": "HTTP_API_BASE_ADDRESS",
-      "value": "http://empiria.steps/api/"
+      "value": "http://empiria.onepoint/api/"
     }
   ]
 }

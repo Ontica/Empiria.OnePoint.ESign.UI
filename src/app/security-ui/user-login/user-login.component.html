@@ -28,7 +28,7 @@
 
         <div class="row">
           <div class="columns">
-            <input style='width:308px;margin:auto' type="text" (input)="userID=$event.target.value" placeholder="{{selectedDocumentItemName}}">
+            <input style='width:308px;margin:auto' type="text" (input)="userID=$event.target.value" placeholder="Usuario o correo">
           </div>
         </div>
 
@@ -40,7 +40,7 @@
 
         <div class="row">
           <div class="columns small-12 small-centered">
-            <input style='width:308px;margin:auto' type="password" placeholder="Contraseña" (input)="password=$event.target.value" (keydown.enter)="searchDocument()">
+            <input style='width:308px;margin:auto' type="password" placeholder="Contraseña" (input)="password=$event.target.value" (keydown.enter)="authenticate()">
           </div>
         </div>
 

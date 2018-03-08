@@ -5,43 +5,28 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
   <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
   <!-- base url -->
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
   <% if (webpackConfig.htmlElements.headTags) { %>
-    <!-- Configured Head Tags  -->
-    <%= webpackConfig.htmlElements.headTags %>
-      <% } %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
 
 
-        <%= htmlWebpackPlugin.files.webpackManifest %>
+  <%= htmlWebpackPlugin.files.webpackManifest %>
 
-          <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-            <!-- Webpack Dev Server reload -->
-            <script src="/webpack-dev-server.js"></script>
-            <% } %>
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
 
-              <!-- Async Google Analytics: change UA-71073175-1 to be your site's ID -->
-              <script>
-                window.ga = window.ga || function() {
-                  (ga.q = ga.q || []).push(arguments)
-                };
-                ga.l = +new Date;
-                ga('create', 'UA-71073175-1', 'auto');
-                ga('send', 'pageview');
+  <!-- CSS will be injected by webpack here -->
+  <!-- Preload link tags will be injected by webpack here --> 
+  <script src="https://use.fontawesome.com/520493470d.js"></script>           
 
-              </script>
-              <script async src="https://www.google-analytics.com/analytics.js"></script>
-              <!-- End Google Analytics -->
-
-              <!-- CSS will be injected by webpack here -->
-              <!-- Preload link tags will be injected by webpack here --> 
-              <script src="https://use.fontawesome.com/520493470d.js"></script>           
-             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">             
-             <!--<link rel="stylesheet" href="./assets/css/foundation.css" type="text/css">-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css"> 
 
 </head>
 
@@ -53,5 +38,4 @@
 
   <!-- Scripts will be injected by webpack here -->
 </body>
-
 </html>

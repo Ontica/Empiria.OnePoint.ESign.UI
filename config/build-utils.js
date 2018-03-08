@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 
 const DEFAULT_METADATA = {
   title: 'Firma electrónica - Gobierno del Estado de Tlaxcala',
-  baseUrl: "/", //  /firma/
+  baseUrl: '/', //  /firma/
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
   AOT: process.env.BUILD_AOT || helpers.hasNpmFlag('aot'),
@@ -103,11 +103,14 @@ function ngcWebpackSetup(prod, metadata) {
     }
   };
 
-  const loaders = [{
+  const loaders = [
+    {
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: buildOptimizer ? [buildOptimizerLoader, '@ngtools/webpack'] : ['@ngtools/webpack']
+      use: buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
     },
-    ...buildOptimizer ? [{ test: /\.js$/, use: [buildOptimizerLoader] }] : []
+    ...buildOptimizer
+      ? [ { test: /\.js$/, use: [ buildOptimizerLoader ] } ]
+      : []
   ];
 
   return {

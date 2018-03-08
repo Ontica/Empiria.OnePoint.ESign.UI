@@ -15,7 +15,7 @@ Ontica, S.C. received such components are set forth below.
 Ontica reserves all rights not expressly granted herein, whether by
 implication, estoppel or otherwise.
 
-============================== angular2-seed ==============================
+============================== angular-starter ==============================
 
 https://github.com/gdi2290/angular-starter
 

@@ -57,7 +57,7 @@ export class EsignDocumentsSearchComponent  {
         this.onDisplayDocument.emit(signRequest.document.uri);           
     }           
    
-    private search(): void {
+    public search(): void {
 
         if (this.keywords === '') {
             alert('La busqueda se encuentrá vacia');
