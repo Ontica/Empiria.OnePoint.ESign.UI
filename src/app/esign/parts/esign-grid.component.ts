@@ -85,7 +85,7 @@ export class EsignGridComponent  {
         this.setSelectedDocuments();
 
         if (this.selectedSignRequests.length === 0) {
-            alert("Upss necesitamos seleccionar los documentos!!!");
+            alert("Requiero se seleccione cuando menos un documento.");
             return;
         }
 

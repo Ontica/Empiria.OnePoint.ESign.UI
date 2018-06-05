@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright (c) 2018 La V�a �ntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) 2017-2018 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
  *

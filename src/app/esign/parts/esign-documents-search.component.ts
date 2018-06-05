@@ -60,7 +60,6 @@ export class EsignDocumentsSearchComponent  {
     public search(): void {
 
         if (this.keywords === '') {
-            alert('La busqueda se encuentrá vacia');
             return;
         }
 

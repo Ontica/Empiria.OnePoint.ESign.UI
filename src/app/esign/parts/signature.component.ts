@@ -125,7 +125,7 @@ private async unRefuse() {
 
 private validateCredetianls(): boolean {
     if (this.password === '') {
-        alert("Upps  Necesito la contraseña para poder realizar la operación!!!");
+        alert("Necesito se proporcione la contraseña asociada a la firma electrónica.");
         return false;
     }
 

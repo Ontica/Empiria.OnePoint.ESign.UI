@@ -38,7 +38,7 @@ export class EsignLogComponent  {
       
        switch(eventType) {
             case 'Signed' : 
-                return 'Firamdo';
+                return 'Firmado';
             case 'Revoked' : 
                 return 'Rechazado';
             default: 
