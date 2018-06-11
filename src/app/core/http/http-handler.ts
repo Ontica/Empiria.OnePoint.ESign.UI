@@ -1,22 +1,21 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { Assertion } from 'empiria';
-
+import { Assertion } from '../general/assertion';
 import { SessionService } from '../general/session.service';
 
 import { Service, HttpMethod, HttpClientOptions, DefaultHttpClientOptions } from './common-types';
 import { Principal } from '../security/principal';
+
 
 @Injectable()
 export class HttpHandler {
@@ -79,7 +78,9 @@ export class HttpHandler {
     }
 
     return this.http.request(HttpMethod[method].toString(), url, requestOptions)
-                    .map((response) => (payloadDataField ? response.body[payloadDataField] : response) as T);
+                    .pipe(
+                       map((response) => (payloadDataField ? response.body[payloadDataField] : response) as T)
+                    );
   }
 
   // Helpers

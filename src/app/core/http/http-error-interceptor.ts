@@ -1,14 +1,13 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { HttpEvent, HttpInterceptor,
          HttpErrorResponse,
@@ -16,12 +15,16 @@ import { HttpEvent, HttpInterceptor,
 
 import { HttpException } from '../general/exception';
 
+
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
-               .catch((err) => Observable.throw(this.getNormalizedHttpErrorResponse(err, req)));
+               .pipe(
+                  catchError((err) => throwError(this.getNormalizedHttpErrorResponse(err, req)))
+               );
+
   }
 
   private getNormalizedHttpErrorResponse(sourceErr: any, request: HttpRequest<any>): HttpErrorResponse {
