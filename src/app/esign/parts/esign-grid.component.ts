@@ -1,41 +1,40 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { EsignService } from '../services/esign.service';
-import { SpinnerService } from '../../shared/spinner/spinner.service';
+import { SpinnerService } from '@app/core/ui-services';
 
 import { SignRequest } from '../data-types/signRequest';
 import { forEach } from '@angular/router/src/utils/collection';
 
-@Component({
-    selector:'esign-grid',
-    templateUrl: './esign-grid.component.html',
-    styleUrls: ['./esign-grid.component.scss']    
-})
 
+@Component({
+  selector:'esign-grid',
+  templateUrl: './esign-grid.component.html',
+  styleUrls: ['./esign-grid.component.scss']
+})
 export class EsignGridComponent  {
-   
+
     public signRequests: SignRequest[];
     public selectedSignRequests: string[] = [];
     public commandName = '';
-    public isCommandWindowVisible = false;    
+    public isCommandWindowVisible = false;
     public selectedSignRequestUID = '';
-        
+
     @Output() public onDisplayDocument = new EventEmitter<string>();
 
     private _documentType = '';
     @Input()
-    set documentType(documentType: string) {   
-       
+    set documentType(documentType: string) {
+
         this._documentType = documentType;
-        
+
         this.signRequests = [];
         this.loadDocuments();
     }
@@ -43,41 +42,41 @@ export class EsignGridComponent  {
         return this._documentType;
     }
 
-    constructor (private esignService: EsignService, private spinnerService: SpinnerService){}   
-        
+    constructor (private esignService: EsignService, private spinnerService: SpinnerService){}
+
     public loadDocuments():  void {
         switch(this.documentType) {
             case 'pendingDocuments' : this.loadPendingDocuments(); break;
             case 'signedDocuments' : this.loadSignedDocuments(); break;
             case 'refusedDocuments' : this.loadRefusedDocuments(); break;
         }
-        
-        this.cleanSelectedDocuments();      
-    }      
 
-    public onSelectAllDocuments(): void {       
+        this.cleanSelectedDocuments();
+    }
+
+    public onSelectAllDocuments(): void {
         this.signRequests.forEach((document) => {
-            document.selected = true;           
-        });             
+            document.selected = true;
+        });
 
     }
 
-    public onUnSelectAllDocuments(): void {     
+    public onUnSelectAllDocuments(): void {
         this.signRequests.forEach((document) => {
             document.selected = false;
-        }); 
-        
+        });
+
     }
 
-    public onSelectDocument(signRequest: SignRequest): void {        
+    public onSelectDocument(signRequest: SignRequest): void {
         let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
-        this.signRequests[selectedDocumentIndex].selected = true; 
+        this.signRequests[selectedDocumentIndex].selected = true;
 
     }
 
     public onUnselectDocument(signRequest: SignRequest): void {
         let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
-        this.signRequests[selectedDocumentIndex].selected = false; 
+        this.signRequests[selectedDocumentIndex].selected = false;
 
     }
 
@@ -90,7 +89,7 @@ export class EsignGridComponent  {
         }
 
         this.commandName = commandName;
-        this.isCommandWindowVisible = true;         
+        this.isCommandWindowVisible = true;
     }
 
     public closeCommandWindow(): void {
@@ -99,25 +98,25 @@ export class EsignGridComponent  {
 
     public updateDocuments(): void {
         this.closeCommandWindow();
-        
-        this.loadDocuments();       
+
+        this.loadDocuments();
         this.cleanSelectedDocuments();
-    }    
+    }
 
-    public openDocumentViewer(signRequest: SignRequest) {       
-         this.selectedSignRequestUID =   signRequest.uid;             
-        
-        this.onDisplayDocument.emit(signRequest.document.uri);           
-    }       
+    public openDocumentViewer(signRequest: SignRequest) {
+         this.selectedSignRequestUID =   signRequest.uid;
 
-    private loadPendingDocuments(): void {  
+        this.onDisplayDocument.emit(signRequest.document.uri);
+    }
+
+    private loadPendingDocuments(): void {
         this.spinnerService.show();
-        
+
         this.esignService.getPendingDocuments()
             .subscribe((signRequests) => { this.signRequests = signRequests; },
                         () => {},
                         () => { this.spinnerService.hide(); });
-           
+
     }
 
     private loadSignedDocuments(): void {
@@ -127,7 +126,7 @@ export class EsignGridComponent  {
             .subscribe((signRequests) => { this.signRequests = signRequests; },
                         () => {},
                         () => { this.spinnerService.hide(); });
-           
+
     }
 
     private loadRefusedDocuments(): void {
@@ -137,16 +136,16 @@ export class EsignGridComponent  {
             .subscribe((signRequests) =>{ this.signRequests = signRequests; },
                         () => {},
                         () => { this.spinnerService.hide(); } );
-           
+
     }
 
-    private setSelectedDocuments(): void {       
+    private setSelectedDocuments(): void {
        this.signRequests.forEach(
-            (signRequest) => signRequest.selected === true ? this.selectedSignRequests.push(signRequest.uid) : '' );            
+            (signRequest) => signRequest.selected === true ? this.selectedSignRequests.push(signRequest.uid) : '' );
 
     }
 
-    private cleanSelectedDocuments(): void  {        
+    private cleanSelectedDocuments(): void  {
         this.selectedSignRequests = [];
     }
 

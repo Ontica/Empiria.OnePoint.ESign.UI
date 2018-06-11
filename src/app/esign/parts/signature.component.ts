@@ -1,17 +1,17 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Component, EventEmitter, HostBinding,
-    Input, Output } from '@angular/core';
+         Input, Output } from '@angular/core';
 
 import { EsignService } from '../services/esign.service';
-import { SpinnerService } from '../../shared/spinner/spinner.service';
-import { ModalWindowComponent } from'../../shared/modal-window/modal-window';
+import { SpinnerService } from '@app/core/ui-services';
+import { ModalWindowComponent } from '@app/shared/modal-window/modal-window';
+
 
 @Component({
 selector:'signature',
@@ -19,7 +19,6 @@ templateUrl: './signature.component.html',
 styleUrls: ['./signature.component.scss'],
 
 })
-
 export class SignatureComponent {
 
 @Input() signRequests: string[];
@@ -27,8 +26,8 @@ private _commandName = '';
 @Input()
  set commandName(commandName) {
     this._commandName = commandName;
-    
-    this.setCommandDescriptionLabel();    
+
+    this.setCommandDescriptionLabel();
  }
  get commandName(): string {
     return this._commandName;
@@ -48,31 +47,31 @@ public cancel(): void {
 
 public onClose(): void {
     this.onCloseEvent.emit();
-} 
+}
 
 public doCommand(): void {
     if (!this.validateCredetianls()) {
         return;
-    } 
-   
-    switch(this.commandName) {        
+    }
+
+    switch(this.commandName) {
         case 'sign' : this.sign(); break;
         case 'refuse' : this.refuse(); break;
         case 'revoke' : this.revoke(); break;
-        case 'unrefuse' : this.unRefuse(); break;          
-    }   
+        case 'unrefuse' : this.unRefuse(); break;
+    }
 }
 
 // Private methods
 
 private setCommandDescriptionLabel(): void {
 
-    switch(this.commandName) {        
+    switch(this.commandName) {
         case 'sign' : this.commandDescriptionLabel =  'Firmar';  break;
         case 'refuse' :  this.commandDescriptionLabel ='Rechazar'; break;
         case 'revoke' :  this.commandDescriptionLabel = 'Envíar a pendientes'; break;
-        case 'unrefuse' : this.commandDescriptionLabel = 'Envíar a pendientes'; break;          
-    } 
+        case 'unrefuse' : this.commandDescriptionLabel = 'Envíar a pendientes'; break;
+    }
 }
 
 private async sign() {
@@ -80,11 +79,11 @@ private async sign() {
     const  credentials = { password: this.password };
 
     this.spinnerService.show();
-  
+
     await this.esignService.sign(credentials, this.signRequests)
                               .subscribe((x) =>  { this.onSave.emit() },
                                 () => {},
-                                () => { this.spinnerService.hide(); });                                                            
+                                () => { this.spinnerService.hide(); });
 }
 
 private async refuse() {
@@ -96,7 +95,7 @@ private async refuse() {
     await this.esignService.refuse(credentials, this.signRequests)
                               .subscribe((x) => { this.onSave.emit() },
                                 () => {},
-                                () => { this.spinnerService.hide(); });                                                                                                    
+                                () => { this.spinnerService.hide(); });
 }
 
 private async revoke() {
@@ -108,7 +107,7 @@ private async revoke() {
     await this.esignService.revoke(credentials, this.signRequests)
                               .subscribe((x) => { this.onSave.emit() },
                                 () => {},
-                                () => { this.spinnerService.hide(); });  
+                                () => { this.spinnerService.hide(); });
 }
 
 private async unRefuse() {
@@ -120,7 +119,7 @@ private async unRefuse() {
     await this.esignService.unRefuse(credentials, this.signRequests)
                             .subscribe((x) => { this.onSave.emit() },
                                 () => {},
-                                () => { this.spinnerService.hide(); }); 
+                                () => { this.spinnerService.hide(); });
 }
 
 private validateCredetianls(): boolean {
