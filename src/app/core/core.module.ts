@@ -19,6 +19,9 @@ import { SessionService } from './general/session.service';
 import { ApplicationSettingsService } from './general/application-settings.service';
 import { DirectoryService } from './http/directory.service';
 
+
+import { HtmlPipe } from './pipes/html.pipe';
+
 import { HttpHandler } from './http/http-handler';
 import { HttpService } from './http/http.service';
 import { HttpErrorInterceptor } from './http/http-error-interceptor';
@@ -28,29 +31,39 @@ import { LoggerService } from './general/logger.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './spinner/spinner.service';
 
+import { MessageBoxComponent } from './messagebox/messageBox.component';
+import { MessageBoxService} from './messagebox/messageBox.service';
+
 import { SecurityDataService } from './security/security-data.service';
 import { AuthenticationService } from './security/authentication.service';
 import { SecurityGuardService } from './security/security-guard.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
+
   imports: [
     CommonModule, HttpClientModule
   ],
-  exports: [SpinnerComponent],
-  declarations: [SpinnerComponent],
+
+  declarations: [HtmlPipe, MessageBoxComponent, SpinnerComponent],
+
+  exports: [HtmlPipe, MessageBoxComponent, SpinnerComponent],
+
   providers: [CoreService, ExceptionHandler, SessionService,
               ApplicationSettingsService, LoggerService,
               SecurityDataService, AuthenticationService,
               SecurityGuardService, HttpHandler, HttpService, DirectoryService,
-              SpinnerService,
+              SpinnerService, MessageBoxService,
               { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
             ]
 })
 export class CoreModule {
 
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+    console.log("CoreModule cntrcor");
+
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
+
   }
 
 }

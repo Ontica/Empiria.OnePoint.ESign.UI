@@ -1,14 +1,15 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { EsignRoutingModule } from './esign-routing.module';;
@@ -30,10 +31,10 @@ import { EsignService } from './services/esign.service';
  */
 
 @NgModule({
-  imports: [EsignRoutingModule, SharedModule, CommonModule, FormsModule],
+  imports: [EsignRoutingModule, SharedModule, CoreModule, CommonModule, FormsModule],
   providers: [EsignService],
   declarations: [EsignMainPageComponent,  EsignNavBarComponent, EsignGridComponent, SignatureComponent,
                  EsignLogComponent, EsignDocumentViewerComponent, EsignDocumentsSearchComponent],
   exports: [EsignMainPageComponent]
-})  
+})
 export class EsignModule { }
