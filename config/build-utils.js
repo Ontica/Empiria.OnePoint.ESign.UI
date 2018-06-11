@@ -3,9 +3,12 @@ const path = require('path');
 const fs = require('fs');
 const helpers = require('./helpers');
 
+const APP_COMMON_CONFIG = require('./config.common.json');
+
 const DEFAULT_METADATA = {
-  title: 'Firma electrónica - Gobierno del Estado de Tlaxcala',
-  baseUrl: '/', //  /firma/
+  title: APP_COMMON_CONFIG.title,
+  description: APP_COMMON_CONFIG.description,
+  baseUrl: APP_COMMON_CONFIG.baseUrl,
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
   AOT: process.env.BUILD_AOT || helpers.hasNpmFlag('aot'),

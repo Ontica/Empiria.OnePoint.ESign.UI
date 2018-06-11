@@ -11,13 +11,10 @@ This Empiria One Point's web application allows electronical sign of documents.
 ```bash
 # clone our repo
 # --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/Ontica/Empiria.OnePoint.ESign
+git clone https://github.com/Ontica/Empiria.OnePoint.ESign
 
 # change directory to our repo
 cd onepoint.esign
-
-# WINDOWS only. In terminal as administrator
-npm install -g node-pre-gyp
 
 # install the repo with npm
 npm install
