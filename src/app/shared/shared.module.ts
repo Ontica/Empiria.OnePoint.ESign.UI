@@ -1,9 +1,8 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -19,10 +18,7 @@ import { AutocompleteControl } from './controls/autocomplete-control';
 import { CalendarControl } from './controls/calendar-control';
 import { SelectControl } from './controls/select-control';
 
-import { ProjectSelectorControl } from './controls/project-selector-control';
-
 import { NavBarService } from './navbar/navbar.service';
-import { ProjectSelectorService } from './controls/project-selector.service';
 
 import { ModalWindowComponent } from './modal-window/modal-window';
 
@@ -34,9 +30,9 @@ import { ModalWindowComponent } from './modal-window/modal-window';
   imports: [RouterModule, CommonModule, FormsModule],
   declarations: [MainLayoutComponent, NavbarComponent, NoContentComponent,
                  AutocompleteControl, CalendarControl, SelectControl,
-                 ProjectSelectorControl, ModalWindowComponent],
+                 ModalWindowComponent],
   exports: [MainLayoutComponent, NoContentComponent, AutocompleteControl,
-            CalendarControl, SelectControl,  ModalWindowComponent],
-  providers:[NavBarService, ProjectSelectorService]
+            CalendarControl, SelectControl, ModalWindowComponent],
+  providers:[NavBarService]
 })
 export class SharedModule { }
