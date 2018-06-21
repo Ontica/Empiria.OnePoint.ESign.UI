@@ -21,6 +21,7 @@ import { DirectoryService } from './http/directory.service';
 
 
 import { HtmlPipe } from './pipes/html.pipe';
+import { SecureResourceUrlPipe } from './pipes/secure-resource-url.pipe';
 
 import { HttpHandler } from './http/http-handler';
 import { HttpService } from './http/http.service';
@@ -45,9 +46,9 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     CommonModule, HttpClientModule
   ],
 
-  declarations: [HtmlPipe, MessageBoxComponent, SpinnerComponent],
+  declarations: [HtmlPipe, SecureResourceUrlPipe, MessageBoxComponent, SpinnerComponent],
 
-  exports: [HtmlPipe, MessageBoxComponent, SpinnerComponent],
+  exports: [HtmlPipe, SecureResourceUrlPipe, MessageBoxComponent, SpinnerComponent],
 
   providers: [CoreService, ExceptionHandler, SessionService,
               ApplicationSettingsService, LoggerService,
