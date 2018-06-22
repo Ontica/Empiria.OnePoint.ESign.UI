@@ -19,32 +19,32 @@ export class EsignMainPageComponent {
 
   public option = '';
   public isDocumentDisplayed = false;
-  public documentURI = ''; 
-  
+  public documentURI = '';
+
   public leftContainerClass = 'columns small-12'
 
   onChangeOption(option: string): void {
     this.option = option;
-      
-    this.onHideDocument(); 
+
+    this.onHideDocument();
   }
 
-  public onDisplayDocument(URI: string): void {       
-    this.leftContainerClass = "columns small-6 hide-for-small-only";
+  public onDisplayDocument(URI: string): void {
+    this.leftContainerClass = "columns small-4 hide-for-small-only";
 
     this.documentURI = URI;
-    this.isDocumentDisplayed = true;    
-  }
-
-  public onHideDocument(): void {
-    this.isDocumentDisplayed = false;    
-
-    this.leftContainerClass = "columns small-12";  
-  }
-
-  public displayDocument(): void {  
     this.isDocumentDisplayed = true;
   }
 
-   
+  public onHideDocument(): void {
+    this.isDocumentDisplayed = false;
+
+    this.leftContainerClass = "columns small-12";
+  }
+
+  public displayDocument(): void {
+    this.isDocumentDisplayed = true;
+  }
+
+
  }
