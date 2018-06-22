@@ -1,9 +1,8 @@
 /**
  * @license
- * Copyright (c) 2017-2018 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { NgModule } from '@angular/core';
@@ -25,7 +24,7 @@ import { SecurityUIModule } from './security-ui/security-ui.module';
 import { SharedModule } from './shared/shared.module';
 
 import { EsignModule } from './esign/esign.module';
- 
+
 
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -72,13 +71,13 @@ interface StoreType {
   imports: [
     CoreModule,
     SecurityUIModule,
-    SharedModule,   
+    SharedModule,
     EsignModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-   
+
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

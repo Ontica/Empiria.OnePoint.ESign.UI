@@ -29,6 +29,7 @@
       "node",
       "uglify-js",
       "webpack"
+
     ]
   },
   "exclude": [

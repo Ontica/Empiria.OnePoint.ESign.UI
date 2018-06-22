@@ -1,66 +1,66 @@
 <div class="row small-centered">
-    <div class="columns small-12 ">                    
+    <div class="columns small-12 ">
         <div style=" padding-top:5px;">
             <label style="display: inline-block;">Buscar:</label>
             <span style="display: inline-block;"><input type="text" style="width:300px" [(ngModel)]="keywords"> </span>
             <span style="display: inline-block"><i class="fa fa-search" (click)="search()"></i></span>
         </div>
-    </div>                 
+    </div>
 </div>
 <div class="row small-centered">
-    <div class="columns small-12 ">              
+    <div class="columns small-12 ">
       <div *ngIf="signRequests.length > 0">
-        <label>{{signRequests.length}} Documentos encontrados</label> 
+        <label>{{signRequests.length}} Documentos encontrados</label>
       </div>
       <div *ngIf="signRequests.length === 0">
-        <label>¡¡No encontré documentos con el criterio de busqueda: <span class="signed-documents-tag">{{keywords}}</span>!!</label> 
+        <label>No encontré documentos con el criterio de búsqueda: <span class="signed-documents-tag">{{keywords}}</span></label>
      </div>
     </div>
 </div>
-   
+
 
 <div class="row">
   <div class="columns small-12 small-centered">
     <div class="grid">
-      <ul> 
-        <li *ngFor="let signRequest of signRequests">              
-          <div [ngSwitch]="signRequest.signStatus">                 
+      <ul>
+        <li *ngFor="let signRequest of signRequests">
+          <div [ngSwitch]="signRequest.signStatus">
             <ng-container *ngSwitchCase="'Pending'">
               <label class="title-tag pending-documents-tag" (click)="openDocumentViewer(signRequest)">
-              <i class="fa fa-file"></i> {{signRequest.document.documentNo}}</label>                      
-              <label class="subtitle-tag pending-documents-tag">{{signRequest.filing.filedBy}}</label> 
+              <i class="fa fa-file"></i> {{signRequest.document.documentNo}}</label>
+              <label class="subtitle-tag pending-documents-tag">{{signRequest.filing.filedBy}}</label>
               <button type="button" class="button-info tiny" (click)="setCommandInfo('sign', signRequest.uid)" >Firmar</button>
               <button type="button" class="button-info tiny" (click)="setCommandInfo('refuse', signRequest.uid)">Rechazar</button>
             </ng-container>
             <ng-container *ngSwitchCase="'Signed'">
               <label class="title-tag signed-documents-tag"  (click)="openDocumentViewer(signRequest)">
               <i class="fa fa-edit"></i> {{signRequest.document.documentNo}}</label>
-              <label class="subtitle-tag signed-documents-tag">{{signRequest.filing.filedBy}}</label> 
+              <label class="subtitle-tag signed-documents-tag">{{signRequest.filing.filedBy}}</label>
               <button type="button" class="button-info tiny" (click)="setCommandInfo('revoke', signRequest.uid)">Enviar a pendientes</button>
             </ng-container>
             <ng-container *ngSwitchCase="'Refused'">
               <label class="title-tag revoked-documents-tag"  (click)="openDocumentViewer(signRequest)">
               <i class="fa fa-times revoked-event-tag"></i> {{signRequest.document.documentNo}}</label>
-              <label class="subtitle-tag revoked-documents-tag" >{{signRequest.filing.filedBy}}  </label> 
+              <label class="subtitle-tag revoked-documents-tag" >{{signRequest.filing.filedBy}}  </label>
               <button type="button" class="button-info tiny" (click)="setCommandInfo('revoke',signRequest.uid)">Enviar a pendientes</button>
             </ng-container>
-          </div>            
+          </div>
           <div style="padding-left: 20px;" >
-            <label class="document-type-label">{{signRequest.document.type}}</label>          
-            <div class='document-description-tag ' [innerHtml]='signRequest.document.description'></div>    
-            <br>        
+            <label class="document-type-label">{{signRequest.document.type}}</label>
+            <div class='document-description-tag ' [innerHtml]='signRequest.document.description'></div>
+            <br>
             <label class='requested-tag'>
                 {{signRequest.requestedTime | date: 'dd-MMM-yyyy' }} | {{signRequest.requestedBy}} |</label>
-          </div>          
+          </div>
         </li>
-      </ul>    
+      </ul>
     </div>
   </div>
 </div>
-  
-<div *ngIf="isCommandWindowVisible" class="popup "> 
+
+<div *ngIf="isCommandWindowVisible" class="popup ">
   <signature [signRequests]="selectedSignRequests" [commandName]="commandName"
     (onCloseEvent)="closeCommandWindow();"
     (onSave)="updateDocuments()">
   </signature>
-</div>       
+</div>
