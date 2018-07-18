@@ -19,18 +19,14 @@ enum Errors {
         '[GET_PENDING_ERR] No pude leer los documnentos por firmar.',
   GET_SIGNED_ERR =
         '[GET_SIGNED_ERR] Ocurrió un problema al leer los documentos firmados.',
-  GET_REFUSED_ERR =
-        '[GET_REFUSED_ERR] Ocurrió un problema al leer los documentos regresados.',
+  GET_REVOKED_ERR =
+        '[GET_REVOKED_ERR] Ocurrió un problema al leer los documentos con firma revocada.',
   GET_SIGNEVENT_ERR =
         '[GET_SIGNEVENT_ERR] Ocurrió un problema al leer los elementos de la bitácora.',
   POST_SIGN_ERR =
         '[POST_SIGN_ERR] Ocurrió un problema al guardar los documentos firmados.',
-  POST_REFUSED_ERR =
-        '[POST_REFUSED_ERR] Ocurrió un problema al guardar los documentos rechazados.',
   POST_REVOKE_ERR =
         '[POST_REVOKE_ERR] Ocurrió un problema al enviar los documentos revocados.',
-  POST_UNREFUSE_ERR =
-        '[POST_UNREFUSED_ERR] Ocurrió un problema al regresar a por firmar los documentos rechazados.',
 }
 
 @Injectable()
@@ -57,12 +53,12 @@ export class EsignService {
 
   }
 
-  public getRefusedDocuments(): Observable<SignRequest[]> {
-    const path = `v2/e-sign/requests/mine/refused`;
+  public getRevokedDocuments(): Observable<SignRequest[]> {
+    const path = `v2/e-sign/requests/mine/revoked`;
 
     return this.core.http.get<SignRequest[]>(path)
                .pipe(
-                  catchError((e) => this.core.http.showAndThrow(e, Errors.GET_REFUSED_ERR))
+                  catchError((e) => this.core.http.showAndThrow(e, Errors.GET_REVOKED_ERR))
                );
   }
 
@@ -87,17 +83,6 @@ export class EsignService {
                );
   }
 
-  public refuse(credentials: object, signRequests: string[]): Observable<any> {
-    const body = {
-      credentials : credentials,
-      signRequests: signRequests
-    };
-
-    return this.core.http.post<any>('v2/e-sign/requests/mine/refused', body)
-               .pipe(
-                  catchError((e) => this.core.http.showAndThrow(e, Errors.POST_REFUSED_ERR))
-               );
-  }
 
   public revoke(credentials: object, signRequests: string[]): Observable<any> {
     const body = {
@@ -107,21 +92,10 @@ export class EsignService {
 
     return this.core.http.post<any>('v2/e-sign/requests/mine/revoked', body)
                .pipe(
-                  catchError((e) => this.core.http.showAndThrow(e, Errors.POST_REFUSED_ERR))
+                  catchError((e) => this.core.http.showAndThrow(e, Errors.POST_REVOKE_ERR))
                );
   }
 
-  public unRefuse(credentials: object, signRequests: string[]): Observable<any> {
-    const body = {
-      credentials : credentials,
-      signRequests: signRequests
-    };
-
-    return this.core.http.post<any>('v2/e-sign/requests/mine/unrefused', body)
-               .pipe(
-                  catchError((e) => this.core.http.showAndThrow(e, Errors.POST_REFUSED_ERR))
-               );
-  }
 
   public search(keywords: string): Observable<any> {
     const path = `v2/e-sign/requests/mine?keywords=${keywords}`;

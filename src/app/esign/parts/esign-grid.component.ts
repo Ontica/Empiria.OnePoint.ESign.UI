@@ -47,8 +47,7 @@ export class EsignGridComponent  {
     public loadDocuments():  void {
         switch(this.documentType) {
             case 'pendingDocuments' : this.loadPendingDocuments(); break;
-            case 'signedDocuments' : this.loadSignedDocuments(); break;
-            case 'refusedDocuments' : this.loadRefusedDocuments(); break;
+            case 'revokedDocuments' : this.loadRevokedDocuments(); break;
         }
 
         this.cleanSelectedDocuments();
@@ -119,20 +118,10 @@ export class EsignGridComponent  {
 
     }
 
-    private loadSignedDocuments(): void {
+    private loadRevokedDocuments(): void {
         this.spinnerService.show();
 
-        this.esignService.getSignedDocuments()
-            .subscribe((signRequests) => { this.signRequests = signRequests; },
-                        () => {},
-                        () => { this.spinnerService.hide(); });
-
-    }
-
-    private loadRefusedDocuments(): void {
-        this.spinnerService.show();
-
-        this.esignService.getRefusedDocuments()
+        this.esignService.getRevokedDocuments()
             .subscribe((signRequests) =>{ this.signRequests = signRequests; },
                         () => {},
                         () => { this.spinnerService.hide(); } );

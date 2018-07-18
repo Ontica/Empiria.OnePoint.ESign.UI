@@ -10,14 +10,12 @@ import { Component, EventEmitter, HostBinding,
 
 import { EsignService } from '../services/esign.service';
 import { SpinnerService } from '@app/core/ui-services';
-import { ModalWindowComponent } from '@app/shared/modal-window/modal-window';
 
 
 @Component({
-selector:'signature',
-templateUrl: './signature.component.html',
-styleUrls: ['./signature.component.scss'],
-
+  selector:'signature',
+  templateUrl: './signature.component.html',
+  styleUrls: ['./signature.component.scss'],
 })
 export class SignatureComponent {
 
@@ -56,9 +54,7 @@ public doCommand(): void {
 
     switch(this.commandName) {
         case 'sign' : this.sign(); break;
-        case 'refuse' : this.refuse(); break;
         case 'revoke' : this.revoke(); break;
-        case 'unrefuse' : this.unRefuse(); break;
     }
 }
 
@@ -67,10 +63,8 @@ public doCommand(): void {
 private setCommandDescriptionLabel(): void {
 
     switch(this.commandName) {
-        case 'sign' : this.commandDescriptionLabel =  'Firmar';  break;
-        case 'refuse' :  this.commandDescriptionLabel ='Rechazar'; break;
-        case 'revoke' :  this.commandDescriptionLabel = 'Envíar a pendientes'; break;
-        case 'unrefuse' : this.commandDescriptionLabel = 'Envíar a pendientes'; break;
+      case 'sign' : this.commandDescriptionLabel =  'Firmar';  break;
+      case 'revoke' :  this.commandDescriptionLabel = 'Revocar firma'; break;
     }
 }
 
@@ -86,20 +80,9 @@ private async sign() {
                                 () => { this.spinnerService.hide(); });
 }
 
-private async refuse() {
-    const errMsg = 'Ocurrió un problema al intentar rechazar los documentos.';
-    const  credentials = { password: this.password };
-
-    this.spinnerService.show();
-
-    await this.esignService.refuse(credentials, this.signRequests)
-                              .subscribe((x) => { this.onSave.emit() },
-                                () => {},
-                                () => { this.spinnerService.hide(); });
-}
 
 private async revoke() {
-    const errMsg = 'Ocurrió un problema al intentar regresar a la bandeja de documentos por firmar.';
+    const errMsg = 'Ocurrió un problema al intentar revocar las firmas.';
     const  credentials = { password: this.password };
 
     this.spinnerService.show();
@@ -110,17 +93,6 @@ private async revoke() {
                                 () => { this.spinnerService.hide(); });
 }
 
-private async unRefuse() {
-    const errMsg = 'Ocurrió un problema al intentar regresar a la bandeja de documentos por firmar.';
-    const  credentials = { password: this.password };
-
-    this.spinnerService.show();
-
-    await this.esignService.unRefuse(credentials, this.signRequests)
-                            .subscribe((x) => { this.onSave.emit() },
-                                () => {},
-                                () => { this.spinnerService.hide(); });
-}
 
 private validateCredetianls(): boolean {
     if (this.password === '') {

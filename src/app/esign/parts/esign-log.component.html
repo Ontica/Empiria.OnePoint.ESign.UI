@@ -2,7 +2,7 @@
   <div class="columns small-12 small-centered">
    <div class="row">
       <div class="columns small-4">
-        <label  style="padding-top:5px; padding-left: 20px;"> {{signEvents.length}} Elementos</label>
+        <label  style="padding-top:5px; padding-left: 20px;"> {{signEvents.length}} eventos</label>
       </div>
 
     </div>
@@ -16,21 +16,21 @@
         <li *ngFor="let signEvent of signEvents">
           <ng-container [ngSwitch]="signEvent.eventType">
             <span *ngSwitchCase = "'Signed'">
-              <label class="singed-event-tag"><i class="fa fa-edit"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
+              <label class="signed-event-tag"><i class="fa fa-edit"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
                 {{signEvent.timeStamp |  date:'shortTime' }} </label>
-                <label class="singed-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
+                <label class="signed-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
                 <label>Firmado</label>
             </span>
             <span  *ngSwitchCase =  "'Revoked'">
               <label class="revoked-event-tag"> <i class="fa fa-exclamation-triangle"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
               {{signEvent.timeStamp |  date:'shortTime' }}</label>
               <label class="revoked-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
-              <label>Rechazado</label>
+              <label>Revocado</label>
             </span>
             <span *ngSwitchDefault>
-                <label class="refused-event-tag"><i class="fa fa-file"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
+                <label class="signed-event-tag"><i class="fa fa-file"></i> {{signEvent.timeStamp | date: 'dd-MM-yyyy' }}
                   {{signEvent.timeStamp |  date:'shortTime' }}</label>
-                  <label class="refused-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
+                  <label class="signed-event-tag">{{signEvent.signRequest.filing.filedBy}}</label>
                 <label>Enviado a pendientes</label>
             </span>
           </ng-container>
@@ -63,13 +63,13 @@
         <td>
             <ng-container [ngSwitch]="signEvent.eventType">
                 <span *ngSwitchCase = "'Signed'">
-                  <i class="fa fa-edit singed-event-tag"></i>
+                  <i class="fa fa-edit signed-event-tag"></i>
                 </span>
-                <span  *ngSwitchCase =  "'Revoked'">
+                <span *ngSwitchCase = "'Revoked'">
                   <i class="fa fa-times revoked-event-tag"></i>
                 </span>
                 <span *ngSwitchDefault>
-                  <i class="fa fa-file refused-event-tag"></i>
+                  <i class="fa fa-file signed-event-tag"></i>
                 </span>
             </ng-container>
         </td>

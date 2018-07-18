@@ -3,7 +3,7 @@
 
 ul {
     list-style: none;
-    border-top: 1px solid $gray;    
+    border-top: 1px solid $gray;
 }
 
 li {
@@ -12,12 +12,12 @@ li {
 
 .grid {
   height: 65vh;
-  background-color: $white; 
-  overflow-y:scroll; 
+  background-color: $white;
+  overflow-y:scroll;
 }
 
-.document-type-label {     
-    color: $blue;   
+.document-type-label {
+    color: $blue;
 }
 
 .small-label {
@@ -29,7 +29,7 @@ li {
  }
 
  table {
-  margin-top: 20px;   
+  margin-top: 20px;
 }
 
 table .header {
@@ -37,21 +37,17 @@ table .header {
 }
 
 td {
-  color: $black;       
+  color: $black;
   font-size: 0.85em;
   padding-bottom: 0;
   padding-top: 0em;
   font-family: $font-family;
 }
 
-.singed-event-tag {
+.signed-event-tag {
   color: $dark-green;
 }
 
-.refused-event-tag, .unrefused-event-tag {
-  color: $light-gray;;
-}
-
-.revoked-event-tag { 
+.revoked-event-tag {
   color: $orange;
 }

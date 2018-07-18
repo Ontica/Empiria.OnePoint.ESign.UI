@@ -30,19 +30,18 @@
               <i class="fa fa-file"></i> {{signRequest.document.documentNo}}</label>
               <label class="subtitle-tag pending-documents-tag">{{signRequest.filing.filedBy}}</label>
               <button type="button" class="button-info tiny" (click)="setCommandInfo('sign', signRequest.uid)" >Firmar</button>
-              <button type="button" class="button-info tiny" (click)="setCommandInfo('refuse', signRequest.uid)">Rechazar</button>
             </ng-container>
             <ng-container *ngSwitchCase="'Signed'">
               <label class="title-tag signed-documents-tag"  (click)="openDocumentViewer(signRequest)">
               <i class="fa fa-edit"></i> {{signRequest.document.documentNo}}</label>
               <label class="subtitle-tag signed-documents-tag">{{signRequest.filing.filedBy}}</label>
-              <button type="button" class="button-info tiny" (click)="setCommandInfo('revoke', signRequest.uid)">Enviar a pendientes</button>
+              <button type="button" class="button-info tiny" (click)="setCommandInfo('revoke', signRequest.uid)">Revocar</button>
             </ng-container>
-            <ng-container *ngSwitchCase="'Refused'">
+            <ng-container *ngSwitchCase="'Revoked'">
               <label class="title-tag revoked-documents-tag"  (click)="openDocumentViewer(signRequest)">
               <i class="fa fa-times revoked-event-tag"></i> {{signRequest.document.documentNo}}</label>
               <label class="subtitle-tag revoked-documents-tag" >{{signRequest.filing.filedBy}}  </label>
-              <button type="button" class="button-info tiny" (click)="setCommandInfo('revoke',signRequest.uid)">Enviar a pendientes</button>
+              <button type="button" class="button-info tiny" (click)="setCommandInfo('sign',signRequest.uid)">Firmar</button>
             </ng-container>
           </div>
           <div style="padding-left: 20px;" >

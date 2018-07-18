@@ -12,47 +12,46 @@ import { SpinnerService } from '@app/core/ui-services';
 import { EsignService } from '../services/esign.service';
 import { SignEvent } from '../data-types/signEvent';
 
-import { forEach } from '@angular/router/src/utils/collection';
-
 
 @Component({
-  selector:'esign-log',
+  selector: 'esign-log',
   templateUrl: './esign-log.component.html',
   styleUrls: ['./esign-log.component.scss'],
 })
-export class EsignLogComponent  {
+export class EsignLogComponent {
 
-    public signEvents: SignEvent[];
-    public commandName = "";
-    public isCommandWindowVisible = false;
+  public signEvents: SignEvent[];
+  public commandName = "";
+  public isCommandWindowVisible = false;
 
 
-    constructor (private esignService: EsignService, private spinnerService: SpinnerService){}
+  constructor(private esignService: EsignService,
+              private spinnerService: SpinnerService) { }
 
-    ngOnInit() {
-        this.loadSignEvents();
+  ngOnInit() {
+    this.loadSignEvents();
+  }
+
+  public getEventTag(eventType: string): string {
+
+    switch (eventType) {
+      case 'Signed':
+        return 'Firmado';
+      case 'Revoked':
+        return 'Revocado';
+      default:
+        return 'Enviado a pendientes';
     }
 
-    public getEventTag(eventType: string): string {
+  }
 
-       switch(eventType) {
-            case 'Signed' :
-                return 'Firmado';
-            case 'Revoked' :
-                return 'Rechazado';
-            default:
-            return 'Enviado a pendientes';
-        }
+  private loadSignEvents(): void {
+    this.spinnerService.show();
 
-    }
-
-    private loadSignEvents(): void {
-        this.spinnerService.show();
-
-        this.esignService.getSignEvents()
-            .subscribe((signEvents) => { this.signEvents = signEvents; console.log(this.signEvents) },
-                        () => {},
-                        () => { this.spinnerService.hide(); });
-    }
+    this.esignService.getSignEvents()
+      .subscribe((signEvents) => { this.signEvents = signEvents; console.log(this.signEvents) },
+        () => { },
+        () => { this.spinnerService.hide(); });
+  }
 
 }
