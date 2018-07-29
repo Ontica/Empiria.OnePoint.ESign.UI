@@ -55,11 +55,14 @@ export class EsignGridComponent {
       case 'pendingDocuments':
         this.loadPendingDocuments();
         break;
+
       case 'revokedDocuments':
         this.loadRevokedDocuments();
         break;
+
     }
-    this.cleanSelectedDocuments();
+
+    this.cleanSelectedRequests();
   }
 
 
@@ -67,12 +70,12 @@ export class EsignGridComponent {
     this.signRequests.forEach((document) => {
       document.selected = true;
     });
-
   }
 
 
   onSelectDocument(signRequest: SignRequest): void {
     let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
+
     this.signRequests[selectedDocumentIndex].selected = true;
   }
 
@@ -81,14 +84,13 @@ export class EsignGridComponent {
     this.signRequests.forEach((document) => {
       document.selected = false;
     });
-
   }
 
 
   onUnselectDocument(signRequest: SignRequest): void {
     let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
-    this.signRequests[selectedDocumentIndex].selected = false;
 
+    this.signRequests[selectedDocumentIndex].selected = false;
   }
 
 
@@ -116,13 +118,13 @@ export class EsignGridComponent {
     this.closeCommandWindow();
 
     this.loadDocuments();
-    this.cleanSelectedDocuments();
+    this.cleanSelectedRequests();
   }
 
 
   // Private methods
 
-  private cleanSelectedDocuments(): void {
+  private cleanSelectedRequests(): void {
     this.selectedSignRequests = [];
   }
 
@@ -133,8 +135,8 @@ export class EsignGridComponent {
     this.esignService.getPendingDocuments()
       .subscribe((signRequests) => { this.signRequests = signRequests; },
         () => { },
-        () => { this.spinnerService.hide(); });
-
+        () => { this.spinnerService.hide(); }
+      );
   }
 
 
@@ -144,15 +146,17 @@ export class EsignGridComponent {
     this.esignService.getRevokedDocuments()
       .subscribe((signRequests) => { this.signRequests = signRequests; },
         () => { },
-        () => { this.spinnerService.hide(); });
-
+        () => { this.spinnerService.hide(); }
+      );
   }
 
 
   private setSelectedDocuments(): void {
-    this.signRequests.forEach(
-      (signRequest) => signRequest.selected === true ? this.selectedSignRequests.push(signRequest.uid) : '');
+    this.cleanSelectedRequests();
 
+    this.signRequests.forEach(
+      (signRequest) => signRequest.selected ? this.selectedSignRequests.push(signRequest.uid) : ''
+    );
   }
 
 }
