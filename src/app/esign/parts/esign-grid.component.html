@@ -1,11 +1,11 @@
 <div class="row small-centered">
   <div class="columns small-12 ">
-    <div [ngSwitch]="documentType" class="header" >
+    <div [ngSwitch]="documentType" class="header">
       <div *ngSwitchCase="'pendingDocuments'">
         <input type="checkbox" (change)="$event.target.checked? onSelectAllDocuments() : onUnSelectAllDocuments()">
         <label>{{signRequests.length}} Documentos por firmar</label>
-        <button type="button" class="button tiny show-for-small-only" (click)="setCommandName('sign')" >Firmar</button>
-        <button type="button" class="button show-for-medium" (click)="setCommandName('sign')" >Firmar</button>
+        <button type="button" class="button tiny show-for-small-only" (click)="setCommandName('sign')">Firmar</button>
+        <button type="button" class="button show-for-medium" (click)="setCommandName('sign')">Firmar</button>
       </div>
       <div *ngSwitchCase="'signedDocuments'">
         <input type="checkbox" (change)="$event.target.checked? onSelectAllDocuments() : onUnSelectAllDocuments()">
@@ -33,33 +33,35 @@
       <ul>
         <li *ngFor="let signRequest of signRequests" [class.selected-item]="signRequest.uid === selectedSignRequestUID">
 
-            <div [ngSwitch]="documentType">
-                <input type="checkbox" [checked]="signRequest.selected" (change)="$event.target.checked? onSelectDocument(signRequest) : onUnselectDocument(signRequest)">
-              <ng-container *ngSwitchCase="'pendingDocuments'">
-                <label class="title-tag pending-documents-tag" [class.document-type-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
-                    <i class="fa fa-file"></i> {{signRequest.document.documentNo}}</label>
-                    <label class="subtitle-tag pending-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
-                </ng-container>
-              <ng-container *ngSwitchCase="'signedDocuments'">
-                  <label class="title-tag signed-documents-tag" [class.selected-name-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
-                      <i class="fa fa-edit"></i> {{signRequest.document.documentNo}}</label>
-                      <label class="subtitle-tag signed-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
-                </ng-container>
-                <ng-container *ngSwitchCase="'revokedDocuments'">
-                    <label class="title-tag revoked-documents-tag" [class.selected-name-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
-                        <i class="fa fa-times revoked-event-tag"></i> {{signRequest.document.documentNo}}</label>
-                        <label class="subtitle-tag revoked-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
-                  </ng-container>
+          <div [ngSwitch]="documentType">
+            <input type="checkbox" [checked]="signRequest.selected" (change)="$event.target.checked? onSelectDocument(signRequest) : onUnselectDocument(signRequest)">
 
-                </div>
-            <div style="padding-left: 20px;" >
+            <ng-container *ngSwitchCase="'pendingDocuments'">
+              <label class="title-tag pending-documents-tag" [class.document-type-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
+                <i class="fa fa-file"></i> {{signRequest.document.documentNo}}</label>
+              <label class="subtitle-tag pending-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
+            </ng-container>
 
-              <label class="document-type-label"[class.selected-document-type-label]="signRequest.selected === true">{{signRequest.document.type}}</label>
+            <ng-container *ngSwitchCase="'signedDocuments'">
+              <label class="title-tag signed-documents-tag" [class.selected-name-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
+                <i class="fa fa-edit"></i> {{signRequest.document.documentNo}}</label>
+              <label class="subtitle-tag signed-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'revokedDocuments'">
+              <label class="title-tag revoked-documents-tag" [class.selected-name-label]="signRequest.selected === true" (click)="openDocumentViewer(signRequest)">
+                <i class="fa fa-times revoked-event-tag"></i> {{signRequest.document.documentNo}}</label>
+              <label class="subtitle-tag revoked-documents-tag" [class.selected-name-label]="signRequest.selected === true">{{signRequest.filing.filedBy}}</label>
+            </ng-container>
+          </div>
+
+          <div style="padding-left: 20px;">
+            <label class="document-type-label" [class.selected-document-type-label]="signRequest.selected === true">{{signRequest.document.type}}</label>
             <div class='document-description-tag ' [innerHtml]='signRequest.document.description'></div>
             <br>
             <label class='requested-tag' [class.selected-small-label]="signRequest.selected === true">
               {{signRequest.requestedTime | date: 'dd-MMM-yyyy' }} | {{signRequest.requestedBy}} |</label>
-            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -67,8 +69,6 @@
 </div>
 
 <div *ngIf="isCommandWindowVisible" class="popup ">
-  <signature [signRequests]="selectedSignRequests" [commandName]="commandName"
-       (onCloseEvent)="closeCommandWindow();"
-       (onSave)="updateDocuments()">
+  <signature [signRequests]="selectedSignRequests" [commandName]="commandName" (onCloseEvent)="closeCommandWindow();" (onSave)="updateDocuments()">
   </signature>
 </div>

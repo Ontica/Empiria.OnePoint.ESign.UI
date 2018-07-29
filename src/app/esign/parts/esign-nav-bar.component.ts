@@ -13,17 +13,19 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
   templateUrl: './esign-nav-bar.component.html',
   styleUrls: ['./esign-nav-bar.component.scss']
 })
-export class EsignNavBarComponent implements OnInit{
+export class EsignNavBarComponent implements OnInit {
 
-  public selectedOption: string = 'pendingDocuments';
+  selectedOption: string = 'pendingDocuments';
 
-  @Output() public onSelectOption = new EventEmitter<string>();
+  @Output() onSelectOption = new EventEmitter<string>();
+
 
   ngOnInit() {
     this.onSelectOption.emit(this.selectedOption);
   }
 
-  public setSelectedStyle(option: string): void {
+
+  setSelectedStyle(option: string): void {
     this.selectedOption  = option;
 
     this.onSelectOption.emit(this.selectedOption);

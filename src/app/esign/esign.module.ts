@@ -31,10 +31,28 @@ import { EsignService } from './services/esign.service';
  */
 
 @NgModule({
-  imports: [EsignRoutingModule, SharedModule, CoreModule, CommonModule, FormsModule],
+
+  imports: [
+    EsignRoutingModule,
+    SharedModule,
+    CoreModule,
+    CommonModule,
+    FormsModule
+  ],
+
   providers: [EsignService],
-  declarations: [EsignMainPageComponent,  EsignNavBarComponent, EsignGridComponent, SignatureComponent,
-                 EsignLogComponent, EsignDocumentViewerComponent, EsignDocumentsSearchComponent],
+
+  declarations: [
+    EsignMainPageComponent,
+    EsignNavBarComponent,
+    EsignGridComponent,
+    SignatureComponent,
+    EsignLogComponent,
+    EsignDocumentViewerComponent,
+    EsignDocumentsSearchComponent
+  ],
+
   exports: [EsignMainPageComponent]
 })
+
 export class EsignModule { }

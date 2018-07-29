@@ -19,7 +19,7 @@ import { EsignMainPageComponent } from './main-page/esign-main.page.component';
   imports: [
     RouterModule.forChild([
       {
-        path: 'esign',  component: MainLayoutComponent, canActivate: [SecurityGuardService],
+        path: 'esign', component: MainLayoutComponent, canActivate: [SecurityGuardService],
         children: [{ path: 'search', component: EsignMainPageComponent }]
       }
     ])],

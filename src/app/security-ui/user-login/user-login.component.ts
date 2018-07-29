@@ -1,15 +1,15 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../core';
+
 
 @Component({
   selector: 'user-login',
@@ -25,7 +25,7 @@ export class UserLoginComponent implements OnInit {
               private authenticationService: AuthenticationService) { }
 
   public async authenticate() {
-   
+
     if (!this.validateForm()) {
       return;
     }
@@ -38,12 +38,12 @@ export class UserLoginComponent implements OnInit {
     } catch (exception) {
       alert(exception);
     }
-       
+
   }
 
   public async ngOnInit() {
     await this.authenticationService.logout()
-                                    .then((x) => this.reloadPage(x));
+      .then((x) => this.reloadPage(x));
   }
 
   public onClickResetCredentials() {

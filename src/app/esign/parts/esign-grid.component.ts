@@ -11,131 +11,148 @@ import { EsignService } from '../services/esign.service';
 import { SpinnerService } from '@app/core/ui-services';
 
 import { SignRequest } from '../data-types/signRequest';
-import { forEach } from '@angular/router/src/utils/collection';
 
 
 @Component({
-  selector:'esign-grid',
+  selector: 'esign-grid',
   templateUrl: './esign-grid.component.html',
   styleUrls: ['./esign-grid.component.scss']
 })
-export class EsignGridComponent  {
+export class EsignGridComponent {
 
-    public signRequests: SignRequest[];
-    public selectedSignRequests: string[] = [];
-    public commandName = '';
-    public isCommandWindowVisible = false;
-    public selectedSignRequestUID = '';
+  signRequests: SignRequest[];
+  selectedSignRequests: string[] = [];
+  commandName = '';
+  isCommandWindowVisible = false;
+  selectedSignRequestUID = '';
 
-    @Output() public onDisplayDocument = new EventEmitter<string>();
+  @Output() onDisplayDocument = new EventEmitter<string>();
 
-    private _documentType = '';
-    @Input()
-    set documentType(documentType: string) {
+  private _documentType = '';
+  @Input()
+  set documentType(documentType: string) {
 
-        this._documentType = documentType;
+    this._documentType = documentType;
 
-        this.signRequests = [];
-        this.loadDocuments();
+    this.signRequests = [];
+    this.loadDocuments();
+  }
+  get documentType(): string {
+    return this._documentType;
+  }
+
+  constructor(private esignService: EsignService,
+              private spinnerService: SpinnerService) { }
+
+
+  closeCommandWindow(): void {
+    this.isCommandWindowVisible = false;
+  }
+
+
+  loadDocuments(): void {
+    switch (this.documentType) {
+      case 'pendingDocuments':
+        this.loadPendingDocuments();
+        break;
+      case 'revokedDocuments':
+        this.loadRevokedDocuments();
+        break;
     }
-    get documentType(): string {
-        return this._documentType;
-    }
+    this.cleanSelectedDocuments();
+  }
 
-    constructor (private esignService: EsignService, private spinnerService: SpinnerService){}
 
-    public loadDocuments():  void {
-        switch(this.documentType) {
-            case 'pendingDocuments' : this.loadPendingDocuments(); break;
-            case 'revokedDocuments' : this.loadRevokedDocuments(); break;
-        }
+  onSelectAllDocuments(): void {
+    this.signRequests.forEach((document) => {
+      document.selected = true;
+    });
 
-        this.cleanSelectedDocuments();
-    }
+  }
 
-    public onSelectAllDocuments(): void {
-        this.signRequests.forEach((document) => {
-            document.selected = true;
-        });
 
-    }
+  onSelectDocument(signRequest: SignRequest): void {
+    let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
+    this.signRequests[selectedDocumentIndex].selected = true;
+  }
 
-    public onUnSelectAllDocuments(): void {
-        this.signRequests.forEach((document) => {
-            document.selected = false;
-        });
 
-    }
+  onUnSelectAllDocuments(): void {
+    this.signRequests.forEach((document) => {
+      document.selected = false;
+    });
 
-    public onSelectDocument(signRequest: SignRequest): void {
-        let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
-        this.signRequests[selectedDocumentIndex].selected = true;
+  }
 
-    }
 
-    public onUnselectDocument(signRequest: SignRequest): void {
-        let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
-        this.signRequests[selectedDocumentIndex].selected = false;
+  onUnselectDocument(signRequest: SignRequest): void {
+    let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
+    this.signRequests[selectedDocumentIndex].selected = false;
 
-    }
+  }
 
-    public setCommandName(commandName: string):  void {
-        this.setSelectedDocuments();
 
-        if (this.selectedSignRequests.length === 0) {
-            alert("Requiero se seleccione cuando menos un documento.");
-            return;
-        }
+  openDocumentViewer(signRequest: SignRequest) {
+    this.selectedSignRequestUID = signRequest.uid;
 
-        this.commandName = commandName;
-        this.isCommandWindowVisible = true;
-    }
+    this.onDisplayDocument.emit(signRequest.document.uri);
+  }
 
-    public closeCommandWindow(): void {
-        this.isCommandWindowVisible = false;
-    }
 
-    public updateDocuments(): void {
-        this.closeCommandWindow();
+  setCommandName(commandName: string): void {
+    this.setSelectedDocuments();
 
-        this.loadDocuments();
-        this.cleanSelectedDocuments();
-    }
-
-    public openDocumentViewer(signRequest: SignRequest) {
-         this.selectedSignRequestUID =   signRequest.uid;
-
-        this.onDisplayDocument.emit(signRequest.document.uri);
-    }
-
-    private loadPendingDocuments(): void {
-        this.spinnerService.show();
-
-        this.esignService.getPendingDocuments()
-            .subscribe((signRequests) => { this.signRequests = signRequests; },
-                        () => {},
-                        () => { this.spinnerService.hide(); });
-
+    if (this.selectedSignRequests.length === 0) {
+      alert("Requiero se seleccione cuando menos un documento.");
+      return;
     }
 
-    private loadRevokedDocuments(): void {
-        this.spinnerService.show();
+    this.commandName = commandName;
+    this.isCommandWindowVisible = true;
+  }
 
-        this.esignService.getRevokedDocuments()
-            .subscribe((signRequests) =>{ this.signRequests = signRequests; },
-                        () => {},
-                        () => { this.spinnerService.hide(); } );
 
-    }
+  updateDocuments(): void {
+    this.closeCommandWindow();
 
-    private setSelectedDocuments(): void {
-       this.signRequests.forEach(
-            (signRequest) => signRequest.selected === true ? this.selectedSignRequests.push(signRequest.uid) : '' );
+    this.loadDocuments();
+    this.cleanSelectedDocuments();
+  }
 
-    }
 
-    private cleanSelectedDocuments(): void  {
-        this.selectedSignRequests = [];
-    }
+  // Private methods
+
+  private cleanSelectedDocuments(): void {
+    this.selectedSignRequests = [];
+  }
+
+
+  private loadPendingDocuments(): void {
+    this.spinnerService.show();
+
+    this.esignService.getPendingDocuments()
+      .subscribe((signRequests) => { this.signRequests = signRequests; },
+        () => { },
+        () => { this.spinnerService.hide(); });
+
+  }
+
+
+  private loadRevokedDocuments(): void {
+    this.spinnerService.show();
+
+    this.esignService.getRevokedDocuments()
+      .subscribe((signRequests) => { this.signRequests = signRequests; },
+        () => { },
+        () => { this.spinnerService.hide(); });
+
+  }
+
+
+  private setSelectedDocuments(): void {
+    this.signRequests.forEach(
+      (signRequest) => signRequest.selected === true ? this.selectedSignRequests.push(signRequest.uid) : '');
+
+  }
 
 }

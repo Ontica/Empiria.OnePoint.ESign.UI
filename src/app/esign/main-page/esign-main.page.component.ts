@@ -1,27 +1,30 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Component } from '@angular/core';
-import { MainPageComponent } from '../../shared/modal-window';
+
 
 @Component({
     selector:'esign-main-page',
     templateUrl: './esign-main-page.component.html',
     styleUrls: ['./esign-main-page.component.scss']
 })
-
 export class EsignMainPageComponent {
 
-  public option = '';
-  public isDocumentDisplayed = false;
-  public documentURI = '';
+  option = '';
+  isDocumentDisplayed = false;
+  documentURI = '';
+  leftContainerClass = 'columns small-12'
 
-  public leftContainerClass = 'columns small-12'
+
+  displayDocument(): void {
+    this.isDocumentDisplayed = true;
+  }
+
 
   onChangeOption(option: string): void {
     this.option = option;
@@ -29,22 +32,19 @@ export class EsignMainPageComponent {
     this.onHideDocument();
   }
 
-  public onDisplayDocument(URI: string): void {
+
+  onDisplayDocument(URI: string): void {
     this.leftContainerClass = "columns small-4 hide-for-small-only";
 
     this.documentURI = URI;
     this.isDocumentDisplayed = true;
   }
 
-  public onHideDocument(): void {
+
+  onHideDocument(): void {
     this.isDocumentDisplayed = false;
 
     this.leftContainerClass = "columns small-12";
   }
-
-  public displayDocument(): void {
-    this.isDocumentDisplayed = true;
-  }
-
 
  }

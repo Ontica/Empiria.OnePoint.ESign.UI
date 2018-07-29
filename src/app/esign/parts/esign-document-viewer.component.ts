@@ -15,6 +15,6 @@ import { Component, Input } from '@angular/core';
 })
 export class EsignDocumentViewerComponent {
 
-  @Input() public documentURI: string = '';
+  @Input() documentURI: string = '';
 
 }

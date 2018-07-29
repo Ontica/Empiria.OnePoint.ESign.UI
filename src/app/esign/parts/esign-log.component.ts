@@ -18,22 +18,22 @@ import { SignEvent } from '../data-types/signEvent';
   templateUrl: './esign-log.component.html',
   styleUrls: ['./esign-log.component.scss'],
 })
-export class EsignLogComponent {
+export class EsignLogComponent implements OnInit {
 
-  public signEvents: SignEvent[];
-  public commandName = "";
-  public isCommandWindowVisible = false;
-
+  signEvents: SignEvent[];
+  commandName = "";
+  isCommandWindowVisible = false;
 
   constructor(private esignService: EsignService,
               private spinnerService: SpinnerService) { }
+
 
   ngOnInit() {
     this.loadSignEvents();
   }
 
-  public getEventTag(eventType: string): string {
 
+  getEventTag(eventType: string): string {
     switch (eventType) {
       case 'Signed':
         return 'Firmado';

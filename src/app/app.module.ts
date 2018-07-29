@@ -31,14 +31,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType } from './app.service';
 
 
 // Define global exception handler provider
 import { ErrorHandler } from '@angular/core';
 import { ExceptionHandler } from './core/general/exception-handler';
 
-const EXCEPTION_HANDLER_PROVIDER =  { provide: ErrorHandler, useClass: ExceptionHandler };
+const EXCEPTION_HANDLER_PROVIDER = { provide: ErrorHandler, useClass: ExceptionHandler };
 
 
 // Temporarily main SCSS file injection
@@ -49,22 +48,16 @@ import '../styles/headings.css';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState,
   EXCEPTION_HANDLER_PROVIDER
 ];
 
-interface StoreType {
-  state: InternalStateType;
-  restoreInputValues: () => void;
-  disposeOldHosts: () => void;
-}
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
   /**
    * Import Angular's modules.
    */
@@ -77,7 +70,6 @@ interface StoreType {
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -87,4 +79,4 @@ interface StoreType {
     APP_PROVIDERS
   ]
 })
-export class AppModule {}
+export class AppModule { }

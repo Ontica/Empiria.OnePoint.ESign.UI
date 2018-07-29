@@ -14,60 +14,64 @@ import { SignRequest } from '../data-types/signRequest';
 
 
 @Component({
-  selector:'documents-search',
+  selector: 'documents-search',
   templateUrl: './esign-documents-search.component.html',
   styleUrls: ['./esign-documents-search.component.scss']
 })
-export class EsignDocumentsSearchComponent  {
+export class EsignDocumentsSearchComponent {
 
-    public signRequests: SignRequest[];
-    public keywords = '';
-    public selectedSignRequests :string[] = [];
+  signRequests: SignRequest[];
+  keywords = '';
+  selectedSignRequests: string[] = [];
 
-    public commandName = '';
-    public isCommandWindowVisible = false;
-    public selectedSignRequestUID = '';
+  commandName = '';
+  isCommandWindowVisible = false;
+  selectedSignRequestUID = '';
 
-    @Output() public onDisplayDocument = new EventEmitter<string>();
+  @Output() onDisplayDocument = new EventEmitter<string>();
 
-    constructor (private esignService: EsignService, private spinnerService: SpinnerService){}
+  constructor(private esignService: EsignService,
+              private spinnerService: SpinnerService) { }
 
-    public setCommandInfo(commandName: string, signRequestUID: string): void {
-        this.selectedSignRequests = [];
-        this.selectedSignRequests.push(signRequestUID);
 
-        this.commandName = commandName;
+  closeCommandWindow(): void {
+    this.isCommandWindowVisible = false;
+  }
 
-        this.isCommandWindowVisible = true;
+
+  openDocumentViewer(signRequest: SignRequest): void {
+    this.onDisplayDocument.emit(signRequest.document.uri);
+  }
+
+
+  search(): void {
+    if (this.keywords === '') {
+      return;
     }
 
-    public closeCommandWindow(): void {
-        this.isCommandWindowVisible = false;
-    }
+    this.spinnerService.show();
 
-    public updateDocuments(): void {
-        this.closeCommandWindow();
+    this.esignService.search(this.keywords)
+      .subscribe((signRequests) => { this.signRequests = signRequests; console.log(this.signRequests) },
+        () => { },
+        () => { this.spinnerService.hide(); });
+  }
 
-        this.search();
-    }
 
-    public openDocumentViewer(signRequest: SignRequest) {
+  setCommandInfo(commandName: string, signRequestUID: string): void {
+    this.selectedSignRequests = [];
+    this.selectedSignRequests.push(signRequestUID);
 
-        this.onDisplayDocument.emit(signRequest.document.uri);
-    }
+    this.commandName = commandName;
 
-    public search(): void {
+    this.isCommandWindowVisible = true;
+  }
 
-        if (this.keywords === '') {
-            return;
-        }
 
-        this.spinnerService.show();
+  updateDocuments(): void {
+    this.closeCommandWindow();
 
-        this.esignService.search(this.keywords)
-            .subscribe((signRequests) => { this.signRequests = signRequests; console.log(this.signRequests) },
-                        () => {},
-                        () => { this.spinnerService.hide(); });
-    }
+    this.search();
+  }
 
 }
