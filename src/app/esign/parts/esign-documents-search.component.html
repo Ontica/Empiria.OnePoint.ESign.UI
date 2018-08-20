@@ -3,7 +3,8 @@
     <div style=" padding-top:5px;">
       <label style="display: inline-block;">Buscar:</label>
       <span style="display: inline-block;">
-        <input type="text" style="width:300px" [(ngModel)]="keywords"> </span>
+        <input type="text" style="width:300px" [(ngModel)]="keywords" (keyup.enter)="search()">
+      </span>
       <span style="display: inline-block">
         <i class="fa fa-search" (click)="search()"></i>
       </span>
