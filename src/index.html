@@ -1,41 +1,41 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="es">
 <head>
   <meta charset="utf-8">
+  <title>Firma electrónica - Gobierno del Estado de Tlaxcala</title>
+
+  <base href="/">
+
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><%= htmlWebpackPlugin.options.title %></title>
-  <meta name="description" content="<%= htmlWebpackPlugin.options.metadata.description %>">
-  <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-  <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
+  <meta name="description" content="Sistema de Firma electrónica del Registro Público de la Propiedad del Gobierno del Estado de Tlaxcala.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <script src="https://use.fontawesome.com/520493470d.js"></script>
 
-  <%= htmlWebpackPlugin.files.webpackManifest %>
-
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
-  <!-- CSS will be injected by webpack here -->
-  <!-- Preload link tags will be injected by webpack here --> 
-  <script src="https://use.fontawesome.com/520493470d.js"></script>           
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">
 
 </head>
-
 <body>
+  <app-root>
+    <style>
+      app-root {
+        background-color: #eee;
+        color: #3a3a3a;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-top: 40vh;
+        text-align: center;
+        font: 14px sans-serif;
+      }
 
-  <app>
-    Cargando el sistema de firma electrónica ...
-  </app>
-
-  <!-- Scripts will be injected by webpack here -->
+      </style>
+    Cargando el sistema de firma electrónica ....<br/><br/>
+    Dirección de Notarías y Registro Público<br />
+    Gobierno del Estado de Tlaxcala
+  </app-root>
 </body>
 </html>

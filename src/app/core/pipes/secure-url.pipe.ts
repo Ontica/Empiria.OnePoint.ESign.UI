@@ -7,13 +7,13 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Pipe({
   name: 'secureUrl'
 })
-export class SecureResourceUrlPipe implements PipeTransform  {
+export class SecureUrlPipe implements PipeTransform  {
 
   constructor(private sanitized: DomSanitizer) {}
 

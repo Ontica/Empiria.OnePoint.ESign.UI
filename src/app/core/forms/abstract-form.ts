@@ -11,14 +11,18 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 
 import { Assertion } from '../general/assertion';
 
-import { Exception } from '../index';
-import { CoreService } from '../core-service';
+import { Exception } from '../general/exception';
 
-import { Displayable, SpinnerService }  from '../ui-services';
+import { Displayable }  from '../ui-data-types';
+import { SpinnerService }  from '../spinner/spinner.service';
 
 export interface Command {
   name: string;
   pars?: object[];
+}
+
+export interface FormSubmitOptions {
+  skipFormValidation?: boolean;
 }
 
 const enum FormMessages {
@@ -164,7 +168,7 @@ export abstract class AbstractForm {
   }
 
 
-  protected onSubmit(): void {
+  protected onSubmit(options?: FormSubmitOptions): void {
     try {
 
       if (this.processing) {
@@ -173,8 +177,14 @@ export abstract class AbstractForm {
 
       this.startProcessing(true);
 
-      this.validate()
-          .then( () => this.afterValidate() );
+      if (options && options.skipFormValidation) {
+        this.invokeExecute();
+
+      } else {
+        this.validate()
+            .then( () => this.afterValidate() );
+
+      }
 
     } catch (error) {
       this.addException(error);

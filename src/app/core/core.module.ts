@@ -21,7 +21,7 @@ import { DirectoryService } from './http/directory.service';
 
 
 import { HtmlPipe } from './pipes/html.pipe';
-import { SecureResourceUrlPipe } from './pipes/secure-resource-url.pipe';
+import { SecureUrlPipe } from './pipes/secure-url.pipe';
 
 import { HttpHandler } from './http/http-handler';
 import { HttpService } from './http/http.service';
@@ -46,16 +46,16 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     CommonModule, HttpClientModule
   ],
 
-  declarations: [HtmlPipe, SecureResourceUrlPipe, MessageBoxComponent, SpinnerComponent],
+  declarations: [HtmlPipe, MessageBoxComponent, SecureUrlPipe, SpinnerComponent],
 
-  exports: [HtmlPipe, SecureResourceUrlPipe, MessageBoxComponent, SpinnerComponent],
+  exports: [HtmlPipe, MessageBoxComponent, SecureUrlPipe, SpinnerComponent],
 
   providers: [CoreService, ExceptionHandler, SessionService,
               ApplicationSettingsService, LoggerService,
               SecurityDataService, AuthenticationService,
               SecurityGuardService, HttpHandler, HttpService, DirectoryService,
               SpinnerService, MessageBoxService,
-              { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
+              { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
             ]
 })
 export class CoreModule {
