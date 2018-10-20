@@ -6,7 +6,7 @@ This Empiria One Point's web application allows electronical sign of documents.
 
 ### Quick start
 
-This project is being built with Angular 6 and TypeScript.
+This project is being built with Angular 7 and TypeScript 3.
 
 It uses [Angular CLI](https://github.com/angular/angular-cli), so both the CLI and generated project, have dependencies that require Node 8.9 or higher, together with NPM 5.5.1 or higher.
 
@@ -29,7 +29,7 @@ After that, please download and install this repo:
 git clone https://github.com/Ontica/Empiria.OnePoint.ESign
 
 # change directory
-cd onepoint.esign
+cd Empiria.OnePoint.ESign
 
 # install the repo with npm
 npm install
@@ -46,7 +46,7 @@ In order to run this application, you MUST have a valid API KEY and access crede
 
 # License
 
-This web application is distributed by the [GNU AFFERO](https://github.com/Ontica/Empiria.Steps.Covar/blob/master/LICENSE.txt) GENERAL PUBLIC LICENSE.
+This web application is distributed by the [GNU AFFERO](https://github.com/Ontica/Empiria.OnePoint.ESign/blob/master/LICENSE.txt) GENERAL PUBLIC LICENSE.
 
 # Copyright
 
