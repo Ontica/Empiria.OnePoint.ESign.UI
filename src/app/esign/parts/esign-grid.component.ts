@@ -35,6 +35,10 @@ export class EsignGridComponent {
     this._documentType = documentType;
 
     this.signRequests = [];
+    this.selectedSignRequests = [];
+    this.selectedSignRequestUID = '';
+    this.commandName = '';
+
     this.loadDocuments();
   }
   get documentType(): string {
