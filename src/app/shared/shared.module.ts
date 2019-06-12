@@ -5,7 +5,7 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -22,9 +22,6 @@ import { NavBarService } from './navbar/navbar.service';
 
 import { ModalWindowComponent } from './modal-window/modal-window';
 
-/**
- * Do not specify providers for modules that might be imported by a lazy loaded module.
- */
 
 @NgModule({
   imports: [RouterModule, CommonModule, FormsModule],
@@ -33,6 +30,6 @@ import { ModalWindowComponent } from './modal-window/modal-window';
                  ModalWindowComponent],
   exports: [MainLayoutComponent, NoContentComponent, AutocompleteControl,
             CalendarControl, SelectControl, ModalWindowComponent],
-  providers:[NavBarService]
+  providers: [NavBarService]
 })
 export class SharedModule { }
