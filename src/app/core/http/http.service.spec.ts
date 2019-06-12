@@ -1,5 +1,5 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HttpService } from './http.service';
 import { DirectoryService } from './directory.service';
@@ -8,16 +8,16 @@ import { DirectoryService } from './directory.service';
 
 //   beforeEach(() => {
 //     TestBed.configureTestingModule({
-//       imports: [HttpModule],
+//       imports: [HttpClientModule],
 //       providers: [HttpService, DirectoryService]
 //     });
 //   });
 
 //   it('should return the license name', async(inject([HttpService], (httpService: HttpService) => {
-//     const path = 'http://empiria.steps/api/' + 'v1/system/license';
+//     const path = 'http://empiria/api/' + 'v1/system/license';
 
 //     httpService.get<string>(path)
-//                .subscribe((value) => expect(value).toBe('Tlaxcala') );
+//                .subscribe((value) => expect(value).toBe('LicenceName') );
 
 //   })));
 
