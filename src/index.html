@@ -4,19 +4,31 @@
   <meta charset="utf-8">
   <title>Firma electrónica - Gobierno del Estado de Tlaxcala</title>
 
-  <base href="/">
-
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Sistema de Firma electrónica del Registro Público de la Propiedad del Gobierno del Estado de Tlaxcala.">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicon/manifest.json">
+    <link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="assets/img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+  <base href="/">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">
 
 </head>
 <body>
-  <app-root>
+  <emp-ng-root>
     <style>
-      app-root {
+      emp-ng-root {
         background-color: #eee;
         color: #3a3a3a;
         position: absolute;
@@ -26,13 +38,16 @@
         left: 0;
         padding-top: 40vh;
         text-align: center;
-        font: 14px sans-serif;
+        font: 14px Segoe UI Emoji, Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;
+        text-transform: uppercase;
       }
+    </style>
 
-      </style>
-    Sistema de Firma Electrónica<br/><br/>
+    <b style='font-size: 20px'>Aplicación de Firma Electrónica</b><br/><br/>
     Dirección de Notarías y Registros Públicos<br />
-    Gobierno del Estado de Tlaxcala
-  </app-root>
+    <b>Gobierno del Estado de Tlaxcala</b>
+    <br/><br/>
+    <span>Cargando componentes ...</span>
+  </emp-ng-root>
 </body>
 </html>
