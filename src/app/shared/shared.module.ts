@@ -11,25 +11,32 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
-import { NavbarComponent } from './navbar/navbar.component';
 import { NoContentComponent } from './no-content/no-content.component';
-
-import { AutocompleteControl } from './controls/autocomplete-control';
-import { CalendarControl } from './controls/calendar-control';
-import { SelectControl } from './controls/select-control';
-
-import { NavBarService } from './navbar/navbar.service';
 
 import { ModalWindowComponent } from './modal-window/modal-window';
 
 
 @NgModule({
-  imports: [RouterModule, CommonModule, FormsModule],
-  declarations: [MainLayoutComponent, NavbarComponent, NoContentComponent,
-                 AutocompleteControl, CalendarControl, SelectControl,
-                 ModalWindowComponent],
-  exports: [MainLayoutComponent, NoContentComponent, AutocompleteControl,
-            CalendarControl, SelectControl, ModalWindowComponent],
-  providers: [NavBarService]
+  imports: [
+    RouterModule,
+    CommonModule,
+    FormsModule
+  ],
+
+  declarations: [
+    MainLayoutComponent,
+    NoContentComponent,
+    ModalWindowComponent
+  ],
+
+  exports: [
+    MainLayoutComponent,
+    NoContentComponent,
+    ModalWindowComponent
+  ],
+
+  providers: [
+
+  ]
 })
 export class SharedModule { }
