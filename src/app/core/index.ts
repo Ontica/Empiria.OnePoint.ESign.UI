@@ -6,8 +6,6 @@
  *
  */
 
-export { CoreService } from './core.service';
-
 export { ExceptionHandler } from './general/exception-handler';
 export { Exception } from './general/exception';
 
