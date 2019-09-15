@@ -5,6 +5,14 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-export * from './common';
 
-export { LocalizationLibrary } from './localization-library';
+export interface KeyValue {
+  readonly key: string;
+  readonly value: any;
+}
+
+
+export const EmptyKeyValue: KeyValue = {
+  key: 'Empty',
+  value: 'Sin valor',
+};

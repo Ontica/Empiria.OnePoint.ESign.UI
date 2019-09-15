@@ -21,7 +21,7 @@ export class SecureUrlPipe implements PipeTransform  {
     if (value) {
       return this.sanitized.bypassSecurityTrustResourceUrl(value);
     } else {
-      return "";
+      return '';
     }
   }
 

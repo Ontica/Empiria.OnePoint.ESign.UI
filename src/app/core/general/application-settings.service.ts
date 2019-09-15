@@ -7,31 +7,38 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
-import { Assertion } from '../general/assertion';
-import { KeyValue } from '../data-types';
+import { ApplicationSettings } from './application-settings';
+import { KeyValue } from '../data-types/key-value';
 
 
 @Injectable()
 export class ApplicationSettingsService {
 
-  private readonly configurationFileName = './assets/empiria.config.json';
+  private settings: Promise<ApplicationSettings>;
 
-  private settings: KeyValue[];
-
-  constructor(private http: HttpClient) { }
-
-  public getSettingsArray(): Promise<KeyValue[]> {
-    return this.http.get<KeyValue[]>(this.configurationFileName, { observe: 'response' })
-                    .toPromise()
-                    .then((response) => response.body['settings'])
-                    .catch((e) => this.handleLoadSettingsFromFileError(e));
+  constructor(private http: HttpClient) {
+    this.loadData();
   }
 
-  private handleLoadSettingsFromFileError(error): Promise<never> {
-    return Promise.reject(new Error(`Critical error: Can't read ${this.configurationFileName} ` +
-                                    `application settings file. ${error.status} ${error.statusText}`));
+
+  getApplicationSettings(): Promise<ApplicationSettings> {
+    return this.settings;
+  }
+
+
+  private loadData() {
+    if (this.settings) {
+      return;
+    }
+
+    this.settings = this.http.get('./assets/empiria.config.json')
+                        .toPromise()
+                        .then((response: {settings: KeyValue[]}) => {
+                          const data = response.settings;
+
+                          return new ApplicationSettings(data);
+                        });
   }
 
 }

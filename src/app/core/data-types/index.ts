@@ -5,6 +5,6 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-export * from './base-types';
+export * from './core-types';
 
-export * from './date.string';
+export * from './key-value';

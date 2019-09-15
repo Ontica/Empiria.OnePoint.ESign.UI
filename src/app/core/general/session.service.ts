@@ -1,9 +1,8 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { Injectable } from '@angular/core';
@@ -13,37 +12,36 @@ import { Assertion } from '../general/assertion';
 import { ApplicationSettingsService } from './application-settings.service';
 import { ApplicationSettings } from './application-settings';
 import { Principal } from '../security/principal';
-import { KeyValue } from '../data-types';
+import { KeyValue } from '../data-types/key-value';
+
 
 @Injectable()
 export class SessionService {
 
-  private appSettings: ApplicationSettings = undefined;
   private principal: Principal = Principal.empty;
   private data: KeyValue[] = [];
 
   constructor(private appSettingsService: ApplicationSettingsService) { }
 
-  public getSettings(): ApplicationSettings {
-    Assertion.assertValue(this.appSettings,
-                          'Application settings were not loaded yet. ' +
-                          'Please call SessionService.start() promise to ensure data were ' +
-                          'loaded before using this method.');
 
-    return this.appSettings;
+  getSettings(): Promise<ApplicationSettings> {
+    return this.appSettingsService.getApplicationSettings();
   }
 
-  public getPrincipal(): Principal {
+
+  getPrincipal(): Principal {
     return this.principal;
   }
 
-  public setPrincipal(principal: Principal) {
+
+  setPrincipal(principal: Principal) {
     Assertion.assertValue(principal, 'principal');
 
     this.principal = principal;
   }
 
-  public getData<T>(key: string): T {
+
+  getData<T>(key: string): T {
     Assertion.assertValue(key, 'key');
 
     const index = this.data.findIndex((x) => x.key === key);
@@ -55,7 +53,8 @@ export class SessionService {
     }
   }
 
-  public setData<T>(key: string, value: T): void {
+
+  setData<T>(key: string, value: T): void {
     Assertion.assertValue(key, 'key');
     Assertion.assertValue(value, 'value');
 
@@ -64,14 +63,7 @@ export class SessionService {
     if (index !== -1) {
       this.data[index] = { key, value };
     } else {
-      this.data.push( { key, value });
-    }
-  }
-
-  public async start(): Promise<void> {
-    if (!this.appSettings) {
-      await this.appSettingsService.getSettingsArray()
-                                   .then((x) => this.appSettings = new ApplicationSettings(x));
+      this.data.push({ key, value });
     }
   }
 

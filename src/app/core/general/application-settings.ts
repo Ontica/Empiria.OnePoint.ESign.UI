@@ -1,27 +1,28 @@
 /**
  * @license
- * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
+ *
  */
 
-import { KeyValue } from '../data-types';
+import { KeyValue } from '../data-types/key-value';
 
 export class ApplicationSettings {
 
-  constructor (private settingsArray: KeyValue[]) {
+  constructor(private settingsArray: KeyValue[]) {
 
   }
 
-  public get applicationKey(): string {
+  get applicationKey(): string {
     return this.get<string>('APPLICATION_KEY');
   }
 
-  public get httpApiBaseAddress(): string {
+  get httpApiBaseAddress(): string {
     return this.get<string>('HTTP_API_BASE_ADDRESS');
   }
 
-  private get<T>(key: string): T {
+  get<T>(key: string): T {
     const index = this.settingsArray.findIndex((x) => x.key === key);
 
     if (index !== -1) {

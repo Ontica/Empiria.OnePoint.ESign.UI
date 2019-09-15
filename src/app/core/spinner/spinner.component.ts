@@ -12,14 +12,14 @@ import { SpinnerState, SpinnerService } from './spinner.service';
 
 
 @Component({
-  selector: 'spinner',
+  selector: 'emp-ng-spinner',
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent implements OnDestroy, OnInit {
 
-  @HostBinding('style.display') public display = 'block';
-  @HostBinding('style.position') public position = 'absolute';
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
 
   private spinnerStateChanged: Subscription;
 
