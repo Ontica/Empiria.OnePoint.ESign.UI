@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 
 
 @Component({
-    selector:'esign-main-page',
+    selector: 'emp-one-esign-main-page',
     templateUrl: './esign-main-page.component.html',
     styleUrls: ['./esign-main-page.component.scss']
 })
@@ -18,7 +18,7 @@ export class EsignMainPageComponent {
   option = '';
   isDocumentDisplayed = false;
   documentURI = '';
-  leftContainerClass = 'columns small-12'
+  leftContainerClass = 'columns small-12';
 
 
   displayDocument(): void {
@@ -34,7 +34,7 @@ export class EsignMainPageComponent {
 
 
   onDisplayDocument(URI: string): void {
-    this.leftContainerClass = "columns small-4 hide-for-small-only";
+    this.leftContainerClass = 'columns small-4 hide-for-small-only';
 
     this.documentURI = URI;
     this.isDocumentDisplayed = true;
@@ -44,7 +44,7 @@ export class EsignMainPageComponent {
   onHideDocument(): void {
     this.isDocumentDisplayed = false;
 
-    this.leftContainerClass = "columns small-12";
+    this.leftContainerClass = 'columns small-12';
   }
 
  }

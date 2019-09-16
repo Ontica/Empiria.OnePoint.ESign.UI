@@ -87,10 +87,11 @@
   </div>
 </div>
 
-<div *ngIf="isCommandWindowVisible" class="popup ">
-  <signature [signRequests]="selectedSignRequests"
-             [commandName]="commandName"
-             (onCloseEvent)="closeCommandWindow();"
-             (onSave)="updateDocuments()">
-  </signature>
+<div *ngIf="isCommandWindowVisible" class="popup">
+  <emp-one-esign-signature
+      [signRequests]="selectedSignRequests"
+      [commandName]="commandName"
+      (closeWindow)="closeCommandWindow();"
+      (save)="updateDocuments()">
+  </emp-one-esign-signature>
 </div>

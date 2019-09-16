@@ -5,20 +5,20 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { SpinnerService } from '@app/core/ui-services';
 
-import { EsignService } from '../services/esign.service';
+import { ESignService } from '../services/esign.service';
 import { SignRequest } from '../data-types/signRequest';
 
 
 @Component({
-  selector: 'documents-search',
+  selector: 'emp-one-esign-documents-search',
   templateUrl: './esign-documents-search.component.html',
   styleUrls: ['./esign-documents-search.component.scss']
 })
-export class EsignDocumentsSearchComponent {
+export class ESignDocumentsSearchComponent {
 
   signRequests: SignRequest[];
   keywords = '';
@@ -28,9 +28,9 @@ export class EsignDocumentsSearchComponent {
   isCommandWindowVisible = false;
   selectedSignRequestUID = '';
 
-  @Output() onDisplayDocument = new EventEmitter<string>();
+  @Output() displayDocument = new EventEmitter<string>();
 
-  constructor(private esignService: EsignService,
+  constructor(private esignService: ESignService,
               private spinnerService: SpinnerService) { }
 
 
@@ -40,7 +40,7 @@ export class EsignDocumentsSearchComponent {
 
 
   openDocumentViewer(signRequest: SignRequest): void {
-    this.onDisplayDocument.emit(signRequest.document.uri);
+    this.displayDocument.emit(signRequest.document.uri);
   }
 
 
@@ -52,7 +52,7 @@ export class EsignDocumentsSearchComponent {
     this.spinnerService.show();
 
     this.esignService.search(this.keywords)
-      .subscribe((signRequests) => { this.signRequests = signRequests; console.log(this.signRequests) },
+      .subscribe((signRequests) => { this.signRequests = signRequests; console.log(this.signRequests); },
         () => { },
         () => { this.spinnerService.hide(); });
   }

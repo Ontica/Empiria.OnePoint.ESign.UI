@@ -7,37 +7,38 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { EsignService } from '../services/esign.service';
+import { ESignService } from '../services/esign.service';
+
 import { SpinnerService } from '@app/core/ui-services';
 
 
 @Component({
-  selector: 'signature',
+  selector: 'emp-one-esign-signature',
   templateUrl: './signature.component.html',
   styleUrls: ['./signature.component.scss'],
 })
-export class SignatureComponent {
+export class ESignatureComponent {
 
   @Input() signRequests: string[];
 
-  private _commandName = '';
+  private commandNameValue = '';
   @Input()
   set commandName(commandName) {
-    this._commandName = commandName;
+    this.commandNameValue = commandName;
 
     this.setCommandDescriptionLabel();
   }
   get commandName(): string {
-    return this._commandName;
+    return this.commandNameValue;
   }
 
-  @Output() onCloseEvent = new EventEmitter();
-  @Output() onSave = new EventEmitter();
+  @Output() closeWindow = new EventEmitter();
+  @Output() save = new EventEmitter();
 
   password = '';
   commandDescriptionLabel = '';
 
-  constructor(private esignService: EsignService,
+  constructor(private esignService: ESignService,
               private spinnerService: SpinnerService) {}
 
 
@@ -59,7 +60,7 @@ export class SignatureComponent {
 
 
   onClose(): void {
-    this.onCloseEvent.emit();
+    this.closeWindow.emit();
   }
 
 
@@ -71,7 +72,7 @@ export class SignatureComponent {
     this.spinnerService.show();
 
     await this.esignService.revoke(credentials, this.signRequests)
-      .subscribe((x) => { this.onSave.emit() },
+      .subscribe((x) => { this.save.emit(); },
         () => { },
         () => { this.spinnerService.hide(); });
   }
@@ -95,7 +96,7 @@ export class SignatureComponent {
     this.spinnerService.show();
 
     await this.esignService.sign(credentials, this.signRequests)
-      .subscribe((x) => { this.onSave.emit() },
+      .subscribe((x) => { this.save.emit(); },
         () => { },
         () => { this.spinnerService.hide(); });
   }
@@ -103,7 +104,7 @@ export class SignatureComponent {
 
   private validateCredentials(): boolean {
     if (this.password === '') {
-      alert("Necesito se proporcione la contraseña asociada a la firma electrónica.");
+      alert('Necesito se proporcione la contraseña asociada a la firma electrónica.');
       return false;
     }
 

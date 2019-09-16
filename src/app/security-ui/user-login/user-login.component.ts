@@ -12,19 +12,19 @@ import { AuthenticationService } from '../../core';
 
 
 @Component({
-  selector: 'user-login',
+  selector: 'emp-ng-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
 
-  public userID = '';
-  public password = '';
+  userID = '';
+  password = '';
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService) { }
 
-  public async authenticate() {
+  async authenticate() {
 
     if (!this.validateForm()) {
       return;
@@ -41,16 +41,16 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  public async ngOnInit() {
+  async ngOnInit() {
     await this.authenticationService.logout()
       .then((x) => this.reloadPage(x));
   }
 
-  public onClickResetCredentials() {
+  onClickResetCredentials() {
     throw new Error('User reset credentials functionality no already defined...');
   }
 
-  // region Private methods
+  // private methods
 
   private reloadPage(mustReload): void {
     if (mustReload) {

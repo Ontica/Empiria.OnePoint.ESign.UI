@@ -9,22 +9,22 @@ import { Component, OnInit } from '@angular/core';
 
 import { SpinnerService } from '@app/core/ui-services';
 
-import { EsignService } from '../services/esign.service';
+import { ESignService } from '../services/esign.service';
 import { SignEvent } from '../data-types/signEvent';
 
 
 @Component({
-  selector: 'esign-log',
+  selector: 'emp-one-esign-log',
   templateUrl: './esign-log.component.html',
   styleUrls: ['./esign-log.component.scss'],
 })
-export class EsignLogComponent implements OnInit {
+export class ESignLogComponent implements OnInit {
 
   signEvents: SignEvent[];
-  commandName = "";
+  commandName = '';
   isCommandWindowVisible = false;
 
-  constructor(private esignService: EsignService,
+  constructor(private esignService: ESignService,
               private spinnerService: SpinnerService) { }
 
 
@@ -49,7 +49,7 @@ export class EsignLogComponent implements OnInit {
     this.spinnerService.show();
 
     this.esignService.getSignEvents()
-      .subscribe((signEvents) => { this.signEvents = signEvents; console.log(this.signEvents) },
+      .subscribe((signEvents) => { this.signEvents = signEvents; console.log(this.signEvents); },
         () => { },
         () => { this.spinnerService.hide(); });
   }

@@ -9,12 +9,12 @@ import { Component, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'document-viewer',
+  selector: 'emp-one-esign-document-viewer',
   templateUrl: './esign-document-viewer.component.html',
   styleUrls: ['./esign-document-viewer.component.scss']
 })
-export class EsignDocumentViewerComponent {
+export class ESignDocumentViewerComponent {
 
-  @Input() documentURI: string = '';
+  @Input() documentURI = '';
 
 }

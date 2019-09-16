@@ -7,18 +7,18 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { EsignService } from '../services/esign.service';
+import { ESignService } from '../services/esign.service';
 import { SpinnerService } from '@app/core/ui-services';
 
 import { SignRequest } from '../data-types/signRequest';
 
 
 @Component({
-  selector: 'esign-grid',
+  selector: 'emp-one-esign-grid',
   templateUrl: './esign-grid.component.html',
   styleUrls: ['./esign-grid.component.scss']
 })
-export class EsignGridComponent {
+export class ESignGridComponent {
 
   signRequests: SignRequest[];
   selectedSignRequests: string[] = [];
@@ -26,13 +26,13 @@ export class EsignGridComponent {
   isCommandWindowVisible = false;
   selectedSignRequestUID = '';
 
-  @Output() onDisplayDocument = new EventEmitter<string>();
+  @Output() displayDocument = new EventEmitter<string>();
 
-  private _documentType = '';
+  private documentTypeValue = '';
   @Input()
   set documentType(documentType: string) {
 
-    this._documentType = documentType;
+    this.documentTypeValue = documentType;
 
     this.signRequests = [];
     this.selectedSignRequests = [];
@@ -42,10 +42,10 @@ export class EsignGridComponent {
     this.loadDocuments();
   }
   get documentType(): string {
-    return this._documentType;
+    return this.documentTypeValue;
   }
 
-  constructor(private esignService: EsignService,
+  constructor(private esignService: ESignService,
               private spinnerService: SpinnerService) { }
 
 
@@ -78,7 +78,7 @@ export class EsignGridComponent {
 
 
   onSelectDocument(signRequest: SignRequest): void {
-    let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
+    const selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
 
     this.signRequests[selectedDocumentIndex].selected = true;
   }
@@ -92,7 +92,7 @@ export class EsignGridComponent {
 
 
   onUnselectDocument(signRequest: SignRequest): void {
-    let selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
+    const selectedDocumentIndex = this.signRequests.findIndex((x) => x.uid === signRequest.uid);
 
     this.signRequests[selectedDocumentIndex].selected = false;
   }
@@ -101,7 +101,7 @@ export class EsignGridComponent {
   openDocumentViewer(signRequest: SignRequest) {
     this.selectedSignRequestUID = signRequest.uid;
 
-    this.onDisplayDocument.emit(signRequest.document.uri);
+    this.displayDocument.emit(signRequest.document.uri);
   }
 
 
@@ -109,7 +109,7 @@ export class EsignGridComponent {
     this.setSelectedDocuments();
 
     if (this.selectedSignRequests.length === 0) {
-      alert("Requiero se seleccione cuando menos un documento.");
+      alert('Requiero se seleccione cuando menos un documento.');
       return;
     }
 

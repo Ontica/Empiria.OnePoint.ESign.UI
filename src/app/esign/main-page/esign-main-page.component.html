@@ -1,6 +1,6 @@
 <div class="row red-border-bottom">
   <div class="columns small-11">
-    <esign-nav-bar (onSelectOption)="onChangeOption($event)"> </esign-nav-bar>
+    <emp-one-esign-nav-bar (selectOption)="onChangeOption($event)"></emp-one-esign-nav-bar>
   </div>
   <div class="columns small-1">
     <div class="small-label " style="float:right; padding-top:5px;">
@@ -12,7 +12,7 @@
 </div>
 
 <ng-container *ngIf="option === 'mylog'">
-  <esign-log></esign-log>
+  <emp-one-esign-log></emp-one-esign-log>
 </ng-container>
 
 <ng-container *ngIf="option !== 'mylog'">
@@ -22,11 +22,16 @@
       <div [ngSwitch]="option">
 
         <ng-container *ngSwitchCase="'search'">
-          <documents-search (onDisplayDocument)="onDisplayDocument($event)"></documents-search>
+          <emp-one-esign-documents-search
+              (displayDocument)="onDisplayDocument($event)">
+          </emp-one-esign-documents-search>
         </ng-container>
 
         <ng-container *ngSwitchDefault>
-          <esign-grid [documentType]="option" (onDisplayDocument)="onDisplayDocument($event)"></esign-grid>
+          <emp-one-esign-grid
+              [documentType]="option"
+              (displayDocument)="onDisplayDocument($event)">
+          </emp-one-esign-grid>
         </ng-container>
 
       </div>
@@ -43,7 +48,10 @@
         <div class="row">
           <div class="columns">
             <div style="width:100%; height:65vh;">
-              <document-viewer [documentURI]="documentURI" (onHideDocument)="onHideDocument()"></document-viewer>
+              <emp-one-esign-document-viewer
+                  [documentURI]="documentURI"
+                  (hideDocument)="onHideDocument()">
+              </emp-one-esign-document-viewer>
             </div>
           </div>
         </div>
@@ -59,7 +67,10 @@
         <div class="row">
           <div class="columns small-12">
             <div style="width:100%; height:65vh;">
-              <document-viewer [documentURI]="documentURI" (onHideDocument)="onHideDocument()"></document-viewer>
+              <emp-one-esign-document-viewer
+                  [documentURI]="documentURI"
+                  (hideDocument)="onHideDocument()">
+              </emp-one-esign-document-viewer>
             </div>
           </div>
         </div>

@@ -12,19 +12,19 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { EsignRoutingModule } from './esign-routing.module';;
+import { EsignRoutingModule } from './esign-routing.module';
 
 import { EsignMainPageComponent } from './main-page/esign-main.page.component';
 
-import { EsignNavBarComponent } from './parts/esign-nav-bar.component';
-import { EsignGridComponent } from './parts/esign-grid.component';
-import { SignatureComponent } from './parts/signature.component'
+import { NavigationBarComponent } from './parts/esign-nav-bar.component';
+import { ESignGridComponent } from './parts/esign-grid.component';
+import { ESignatureComponent } from './parts/signature.component';
 
-import { EsignLogComponent } from './parts/esign-log.component';
-import { EsignDocumentViewerComponent } from './parts/esign-document-viewer.component';
-import { EsignDocumentsSearchComponent } from './parts/esign-documents-search.component';
+import { ESignLogComponent } from './parts/esign-log.component';
+import { ESignDocumentViewerComponent } from './parts/esign-document-viewer.component';
+import { ESignDocumentsSearchComponent } from './parts/esign-documents-search.component';
 
-import { EsignService } from './services/esign.service';
+import { ESignService } from './services/esign.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -40,16 +40,16 @@ import { EsignService } from './services/esign.service';
     FormsModule
   ],
 
-  providers: [EsignService],
+  providers: [ESignService],
 
   declarations: [
     EsignMainPageComponent,
-    EsignNavBarComponent,
-    EsignGridComponent,
-    SignatureComponent,
-    EsignLogComponent,
-    EsignDocumentViewerComponent,
-    EsignDocumentsSearchComponent
+    NavigationBarComponent,
+    ESignGridComponent,
+    ESignatureComponent,
+    ESignLogComponent,
+    ESignDocumentViewerComponent,
+    ESignDocumentsSearchComponent
   ],
 
   exports: [EsignMainPageComponent]

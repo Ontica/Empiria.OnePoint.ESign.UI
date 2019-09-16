@@ -7,74 +7,44 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
-import { CoreService } from '../../core/core.service';
+import { HttpService } from '@app/core';
 
 import { SignRequest } from '../data-types/signRequest';
 
 
-enum Errors {
-  GET_PENDING_ERR =
-    '[GET_PENDING_ERR] No pude leer los documnentos por firmar.',
-  GET_SIGNED_ERR =
-    '[GET_SIGNED_ERR] Ocurrió un problema al leer los documentos firmados.',
-  GET_REVOKED_ERR =
-    '[GET_REVOKED_ERR] Ocurrió un problema al leer los documentos con firma revocada.',
-  GET_SIGNEVENT_ERR =
-    '[GET_SIGNEVENT_ERR] Ocurrió un problema al leer los elementos de la bitácora.',
-  POST_SIGN_ERR =
-    '[POST_SIGN_ERR] Ocurrió un problema al guardar los documentos firmados.',
-  POST_REVOKE_ERR =
-    '[POST_REVOKE_ERR] Ocurrió un problema al enviar los documentos revocados.',
-}
-
-
 @Injectable()
-export class EsignService {
+export class ESignService {
 
-  constructor(private core: CoreService) { }
+  constructor(private http: HttpService) { }
 
   // get methods
 
   getPendingDocuments(): Observable<SignRequest[]> {
     const path = `v2/e-sign/requests/mine/pending`;
 
-    return this.core.http.get<SignRequest[]>(path)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.GET_PENDING_ERR))
-      );
+    return this.http.get<SignRequest[]>(path);
   }
 
 
   getRevokedDocuments(): Observable<SignRequest[]> {
     const path = `v2/e-sign/requests/mine/revoked`;
 
-    return this.core.http.get<SignRequest[]>(path)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.GET_REVOKED_ERR))
-      );
+    return this.http.get<SignRequest[]>(path);
   }
 
 
   getSignedDocuments(): Observable<SignRequest[]> {
     const path = `v2/e-sign/requests/mine/signed`;
 
-    return this.core.http.get<SignRequest[]>(path)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.GET_SIGNED_ERR))
-      );
-
+    return this.http.get<SignRequest[]>(path);
   }
 
 
   getSignEvents(): Observable<any> {
     const path = `v2/e-sign/events/mine`;
 
-    return this.core.http.get<any>(path)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.GET_SIGNEVENT_ERR))
-      );
+    return this.http.get<any>(path);
   }
 
 
@@ -82,37 +52,28 @@ export class EsignService {
 
   revoke(credentials: object, signRequests: string[]): Observable<any> {
     const body = {
-      credentials: credentials,
-      signRequests: signRequests
+      credentials,
+      signRequests
     };
 
-    return this.core.http.post<any>('v2/e-sign/requests/mine/revoked', body)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.POST_REVOKE_ERR))
-      );
+    return this.http.post<any>('v2/e-sign/requests/mine/revoked', body);
   }
 
 
   search(keywords: string): Observable<any> {
     const path = `v2/e-sign/requests/mine?keywords=${keywords}`;
 
-    return this.core.http.get<any[]>(path)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.GET_PENDING_ERR))
-      );
+    return this.http.get<any[]>(path);
   }
 
 
   sign(credentials: object, signRequests: string[]): Observable<any> {
     const body = {
-      credentials: credentials,
-      signRequests: signRequests
+      credentials,
+      signRequests
     };
 
-    return this.core.http.post<any>('v2/e-sign/requests/mine/signed', body)
-      .pipe(
-        catchError((e) => this.core.http.showAndThrow(e, Errors.POST_SIGN_ERR))
-      );
+    return this.http.post<any>('v2/e-sign/requests/mine/signed', body);
   }
 
 }
