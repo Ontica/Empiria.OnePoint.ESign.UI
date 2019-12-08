@@ -11,6 +11,8 @@ import { HttpHandler } from '../http/http-handler';
 
 import { SessionToken, Identity, ClaimsList } from './security-types';
 
+import { Cryptography } from './cryptography';
+
 
 interface ExternalSessionToken {
   readonly access_token: string;
@@ -35,10 +37,10 @@ export class SecurityDataService {
   createSession(userID: string, userPassword: string): Promise<SessionToken> {
     const body = {
       user_name: userID,
-      password: userPassword
+      password: Cryptography.convertToMd5(userPassword)
     };
 
-    return this.httpHandler.post<ExternalSessionToken>('v1.6/security/login', body)
+    return this.httpHandler.post<ExternalSessionToken>('v2/security/login', body)
                .toPromise()
                .then(x => this.mapToSessionToken(x));
   }
