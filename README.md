@@ -6,7 +6,7 @@ This Empiria One Point's web application allows electronical sign of documents.
 
 ## Quick start
 
-This project is being built with Angular 8.2.10 and TypeScript 3.5.3
+This project is being built with Angular 9 and TypeScript 3.7
 
 It uses [Angular CLI](https://github.com/angular/angular-cli), so both the CLI and generated project, have dependencies that require Node 10.16 or higher, together with NPM 6.9 or higher.
 
@@ -51,4 +51,4 @@ This web application is distributed by the [GNU AFFERO](https://github.com/Ontic
 
 ## Copyright
 
-Copyright © 2017-2019. La Vía Óntica SC, Ontica LLC and contributors.
+Copyright © 2017-2020. La Vía Óntica SC, Ontica LLC and contributors.
