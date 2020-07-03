@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "onepoint-esign"
+  "defaultProject": "onepoint-esign",
+  "cli": {
+    "analytics": "54862f35-4564-4283-a544-5d732da55c7f"
+  }
 }

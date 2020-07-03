@@ -37,10 +37,10 @@ export class SecurityDataService {
   createSession(userID: string, userPassword: string): Promise<SessionToken> {
     const body = {
       user_name: userID,
-      password: Cryptography.convertToMd5(userPassword)
+      password: userPassword
     };
 
-    return this.httpHandler.post<ExternalSessionToken>('v2/security/login', body)
+    return this.httpHandler.post<ExternalSessionToken>('v1.6/security/login', body)
                .toPromise()
                .then(x => this.mapToSessionToken(x));
   }
