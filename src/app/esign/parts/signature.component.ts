@@ -21,6 +21,8 @@ export class ESignatureComponent {
 
   @Input() signRequests: string[];
 
+  signerName = 'Lic. Elida Garrido Maldonado';
+
   private commandNameValue = '';
   @Input()
   set commandName(commandName) {
@@ -72,9 +74,10 @@ export class ESignatureComponent {
     this.spinnerService.show();
 
     await this.esignService.revoke(credentials, this.signRequests)
-      .subscribe((x) => { this.save.emit(); },
-        () => { },
-        () => { this.spinnerService.hide(); });
+      .subscribe(x => this.save.emit(),
+        () => alert('La contraseña proporcionada no coincide con la asociada a la firma electrónica.'),
+        () => this.spinnerService.hide()
+      );
   }
 
 
@@ -96,9 +99,10 @@ export class ESignatureComponent {
     this.spinnerService.show();
 
     await this.esignService.sign(credentials, this.signRequests)
-      .subscribe((x) => { this.save.emit(); },
-        () => { },
-        () => { this.spinnerService.hide(); });
+      .subscribe(x => this.save.emit(),
+        () => alert('La contraseña proporcionada no coincide con la asociada a la firma electrónica.'),
+        () => this.spinnerService.hide()
+      );
   }
 
 
@@ -110,5 +114,4 @@ export class ESignatureComponent {
 
     return true;
   }
-
 }
