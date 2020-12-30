@@ -2,20 +2,20 @@
   <div class="columns small-12 ">
     <div [ngSwitch]="documentType" class="header">
       <div *ngSwitchCase="'pendingDocuments'">
-        <input type="checkbox" (change)="$event.target.checked? onSelectAllDocuments() : onUnSelectAllDocuments()">
+        <input type="checkbox" name="isDocumentSelected" [(ngModel)]="isDocumentSelected" (change)="onChangeSelectedDocument()">
         <label>{{signRequests.length}} Documentos por firmar</label>
         <button type="button" class="button tiny show-for-small-only" (click)="setCommandName('sign')">Firmar</button>
         <button type="button" class="button show-for-medium" (click)="setCommandName('sign')">Firmar</button>
       </div>
       <div *ngSwitchCase="'signedDocuments'">
-        <input type="checkbox" (change)="$event.target.checked? onSelectAllDocuments() : onUnSelectAllDocuments()">
+        <input type="checkbox"  name="isDocumentSelected" [(ngModel)]="isDocumentSelected" (change)="onChangeSelectedDocument()">
         <label>{{signRequests.length}} Documentos firmados</label>
         <button type="button" class="button tiny show-for-small-only" (click)="setCommandName('revoke')">Revocar</button>
 
         <button type="button" class="button small show-for-medium" (click)="setCommandName('revoke')">Revocar</button>
       </div>
       <div *ngSwitchCase="'revokedDocuments'">
-        <input type="checkbox" (change)="$event.target.checked? onSelectAllDocuments() : onUnSelectAllDocuments()">
+        <input type="checkbox" name="isDocumentSelected" [(ngModel)]="isDocumentSelected" (change)="onChangeSelectedDocument()">
         <label>{{signRequests.length}} Documentos revocados</label>
         <button type="button" class="button tiny show-for-small-only" (click)="setCommandName('sign')">Firmar de nuevo</button>
 
@@ -34,8 +34,8 @@
         <li *ngFor="let signRequest of signRequests" [class.selected-item]="signRequest.uid === selectedSignRequestUID">
 
           <div [ngSwitch]="documentType">
-            <input type="checkbox" [checked]="signRequest.selected"
-                   (change)="$event.target.checked? onSelectDocument(signRequest) : onUnselectDocument(signRequest)">
+            <input type="checkbox"  [checked]="signRequest.selected" [(ngModel)]="isSignRequest"
+                   (change)= "onChangeSignRequest(signRequest)">
 
             <ng-container *ngSwitchCase="'pendingDocuments'">
               <label class="title-tag pending-documents-tag"

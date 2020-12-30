@@ -3,11 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "onepoint-esign": {
+    "esing": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/onepoint-esign",
+            "outputPath": "dist/esing",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -43,7 +46,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -51,12 +53,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }
@@ -65,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "onepoint-esign:build"
+            "browserTarget": "esing:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "onepoint-esign:build:production"
+              "browserTarget": "esing:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "onepoint-esign:build"
+            "browserTarget": "esing:build"
           }
         },
         "test": {
@@ -113,19 +116,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "onepoint-esign:serve"
+            "devServerTarget": "esing:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "onepoint-esign:serve:production"
+              "devServerTarget": "esing:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "onepoint-esign",
+  "defaultProject": "esing",
   "cli": {
-    "analytics": "54862f35-4564-4283-a544-5d732da55c7f"
+    "analytics": "c9988363-a9bf-4dca-96a5-a98d8566dc43"
   }
 }

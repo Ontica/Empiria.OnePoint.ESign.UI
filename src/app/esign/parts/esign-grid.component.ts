@@ -25,6 +25,8 @@ export class ESignGridComponent {
   commandName = '';
   isCommandWindowVisible = false;
   selectedSignRequestUID = '';
+  isDocumentSelected = false;
+  isSignRequest = false;
 
   @Output() displayDocument = new EventEmitter<string>();
 
@@ -69,6 +71,23 @@ export class ESignGridComponent {
     this.cleanSelectedRequests();
   }
 
+  onChangeSelectedDocument(): void {
+    if (this.isDocumentSelected) {
+      this.onSelectAllDocuments();
+    } else {
+      this.onUnSelectAllDocuments();
+    }
+
+  }
+
+  onChangeSignRequest(signRequest: SignRequest) {
+    if (this.isSignRequest) {
+      this.onSelectDocument(signRequest)
+    } else {
+      this.onUnselectDocument(signRequest)
+    }
+
+  }
 
   onSelectAllDocuments(): void {
     this.signRequests.forEach((document) => {

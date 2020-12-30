@@ -1,14 +1,18 @@
 {
   "appName": "Empiria OnePoint ESign Application",
-  "version": "1.3",
-  "date": "2019-09-13",
+  "version": "2.0",
+  "date": "2020-12-24",
   "settings": [{
       "key": "APPLICATION_KEY",
-      "value": "esignDEVhsB9gtDAWUycXbpmM2ZCdff9nEck4AgM3KsQEjpEKqhzqH5q9v"
+      "value": "esign-development_S2!SErFr^1^6v3Z3$Jf8UnmCIGN3j?m7|tL?FG_fl&Y#@$IJv2PY_Y+5wJx_rNZh#HB"
     },
     {
       "key": "HTTP_API_BASE_ADDRESS",
-      "value": "http://empiria.land/web.api/"
+      "value": "https://empiria-land.azurewebsites.net/api/"
+    },
+    {
+      "key": "displayVedaElectoralUI",
+      "value": false
     }
   ]
 }

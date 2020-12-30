@@ -1,54 +1,27 @@
-# Empiria OnePoint ESign Application
+# Esing
 
-## Overview
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
-This Empiria One Point's web application allows electronical sign of documents.
+## Development server
 
-## Quick start
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-This project is being built with Angular 10 and TypeScript 4.
+## Code scaffolding
 
-It uses [Angular CLI](https://github.com/angular/angular-cli), so both the CLI and generated project, have dependencies that require Node 10.16 or higher, together with NPM 6.9 or higher.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Make sure you have **Node version >= 10.16** and **NPM >= 6.9**
+## Build
 
-Then install **[Angular CLI](https://github.com/angular/angular-cli)** (globally if possible), ensuring that you have installed **version 10.1** or higher.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Running unit tests
 
-```bash
-# install Angular CLI globally
-npm install -g @angular/cli
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-# check Angular CLI, Angular and TypeScript versions
-ng --version
-```
+## Running end-to-end tests
 
-After that, please download and install this repo:
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-```bash
-# clone (or fork) this repo
-git clone https://github.com/Ontica/Empiria.OnePoint.ESign
+## Further help
 
-# change directory
-cd Empiria.OnePoint.ESign
-
-# install the repo with npm
-npm install
-
-# Use Angular CLI to start the server
-ng serve --open
-```
-
-By default, you have to navigate to [http://localhost:4200](http://localhost:4200) to see the application running.
-
-## Backend access
-
-In order to run this application, you MUST have a valid API KEY and access credentials to connect to the system's backend. Please request them by sending us an email.
-
-## License
-
-This web application is distributed by the [GNU AFFERO](https://github.com/Ontica/Empiria.OnePoint.ESign/blob/master/LICENSE.txt) GENERAL PUBLIC LICENSE.
-
-## Copyright
-
-Copyright © 2017-2020. La Vía Óntica SC, Ontica LLC and contributors.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

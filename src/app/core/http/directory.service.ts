@@ -64,12 +64,15 @@ export class DirectoryService {
       const filteredServices = x.filter((service) => condition(service));
 
       if (filteredServices.length === 0) {
-        Assertion.assert(false, 'There are no services that satisfy the supplied search condition.');
+        Assertion.assertNoReachThisCode(
+          'There are no services that satisfy the supplied search condition.'
+        );
 
       } else if (filteredServices.length > 1) {
-        Assertion.assert(false,
+        Assertion.assertNoReachThisCode(
           `There are defined ${filteredServices.length} services that satisfy the ` +
-          'supplied search condition.');
+          'supplied search condition.'
+        );
 
       } else {
         return filteredServices[0];
